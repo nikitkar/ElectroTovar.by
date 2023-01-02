@@ -1,0 +1,114 @@
+.product {
+  background-color: $color-white;
+  padding: 40px 0;
+  
+  &-wrapper {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 45px;
+  }
+
+  &-title {
+    @include font($size-title_card-product, 800);
+    color: $color-dark_grey;
+  }
+
+  &-body {
+    @include displayFlex(flex-start, space-between);
+    gap: 35px;
+
+    width: 100%;
+  }
+
+  &-img {
+    object-fit: contain;
+    vertical-align: middle;
+
+    &-wrap {
+      width: 560px;
+      height: 477px;
+    }
+  }
+
+  &-info {
+    @include displayFlex(flex-start, space-between);
+    gap: 30px;
+
+    width: 100%;
+  }
+
+  &-params {
+    &__list {
+      @include displayFlex(flex-start, flex-start, column);
+      gap: 5px;
+
+      width: 100%;
+    }
+
+    &__item {
+      max-width: 330px;
+      width: 100%;
+
+      display: flex;
+      gap: 5px;
+
+      @include font(14px, 400);
+
+      &-title {
+        color: $color-text_light;
+      }
+
+      &-value {
+        color: $color-text_dark;
+      }
+    }
+  }
+
+  &-payment {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 15px;
+
+    max-width: 330px;
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+
+    padding: 20px;
+    padding-top: 30px;
+
+    &__coast {
+      @include displayFlex(flex-start, space-between);
+      width: 100%;
+    }
+
+    &__status {
+      @include font(15px, 600);
+
+      @include displayFlex(center, flex-end);
+
+      display: -ms-flexbox;
+      -ms-flex-wrap: nowrap;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 6px;
+        background-color: #70be71;
+      }
+    }
+
+    &__price {
+      @include font($size-price_card-product, 700);
+      color: $color-dark_grey;
+    }
+
+    &__controls {
+    }
+
+    &__bonus {
+      @include font(24px, 700);
+    }
+  }
+}

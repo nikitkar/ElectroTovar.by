@@ -1,0 +1,86 @@
+.auth-modal {
+  @include displayFlex(center, center, column);
+  padding: 100px 0;
+
+  &__wrapper {
+    width: 600px;
+
+    padding: 60px 70px;
+
+    background-color: $color-white;
+
+    border-radius: 6px;
+
+    position: relative;
+
+    @include displayFlex(center, center, column);
+    gap: 20px;
+  }
+
+  &__title {
+    @include font($size-title_section, 700);
+    color: $color-dark_grey;
+  }
+
+  &__form {
+    @include displayFlex(center, center, column);
+    gap: 16px;
+
+    width: 100%;
+  }
+
+  &__password {
+    width: 100%;
+
+    position: relative;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 13px 20px;
+
+    background-color: #f7f7f7;
+    border: 1px solid rgba(144, 156, 181, 0.3);
+    border-radius: 6px;
+
+    @include font(16px, 400);
+
+    position: relative;
+
+    &::placeholder {
+      @include font(16px, 400);
+      color: #909cb5;
+    }
+
+    &-eye {
+      width: 24px;
+      height: 24px;
+
+      background-image: url(../../images/icon/show_password/hide_pass.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+
+      cursor: pointer;
+    }
+
+    &-see {
+      background-image: url(../../images/icon/show_password/show_pass.svg);
+    }
+  }
+
+  &__bottom {
+    @include displayFlex(center, center, column);
+    gap: 12px;
+  }
+
+  &__auth {
+    @include font(14px, 500);
+    color: #4b7ee8;
+  }
+}

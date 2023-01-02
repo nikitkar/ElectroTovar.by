@@ -1,0 +1,31 @@
+@import "../libs/mixin";
+@import "../variables";
+
+.footer {
+  background-color: $color-dark_grey;
+  box-shadow: 0px 10px 50px rgba(133, 143, 164, 0.05);
+
+  padding: 90px 0 50px;
+
+  &-wrapper {
+    width: 100%;
+
+    @include displayFlex(flex-start, center, column);
+  }
+
+  &-top {
+    @include displayFlex(center, space-between);
+    gap: 20px;
+
+    width: 100%;
+  }
+
+  .communications {
+    border: none;
+    width: auto;
+
+    &-tel {
+      color: #858fa4;
+    }
+  }
+}

@@ -1,0 +1,144 @@
+@import "../libs/mixin";
+@import "../variables";
+
+.hits {
+  padding: 100px 0;
+
+  &-wrapper {
+    @include displayFlex(flex-start, flex-start, column);
+    // gap: 30px;
+
+    width: 100%;
+  }
+
+  &-title {
+    @include font($size-title_section, 700);
+    color: $color-dark_grey;
+  }
+
+  &-list {
+    width: 100%;
+
+    padding: 4 0px 0;
+  }
+
+  &-item {
+    width: 300px;
+
+    border-radius: 10px;
+
+    transition: filter linear 0.2s;
+    background-color: $color-white;
+
+    @include displayFlex(center, center, column);
+
+    overflow: auto;
+
+    &:hover {
+      filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.12))
+        drop-shadow(0px 4px 30px rgba(19, 15, 38, 0.1));
+    }
+
+    &__img-block {
+      width: 300px;
+      height: 300px;
+
+      cursor: pointer;
+
+      &_img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+      }
+    }
+
+    &__content {
+      padding: 20px;
+      padding-bottom: 26px;
+
+      background-color: $color-white;
+
+      width: 100%;
+      @include displayFlex(flex-start, center, column);
+      gap: 16px;
+    }
+
+    &__title {
+      @include font($size-category, 400);
+      color: $color-dark_grey;
+
+      cursor: pointer;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    &__footer {
+      width: 100%;
+
+      @include displayFlex(center, space-between);
+      gap: 10px;
+    }
+
+    &__cost {
+      @include displayFlex(flex-start, flex-start, column);
+    }
+
+    &__price {
+      @include font($size-price, 700);
+      color: $color-dark_grey;
+    }
+
+    &__discount {
+      @include font(16px, 400);
+      color: $color-discount;
+
+      text-decoration-line: line-through;
+    }
+  }
+
+  .swiper {
+    &-wrapper {
+      width: 100%;
+
+      padding: 50px 0;
+    }
+
+    &-button {
+      &-prev,
+      &-next {
+        width: 50px;
+        height: 50px;
+
+        background-color: $color-white;
+
+        border-radius: 50%;
+
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07),
+          0px 0px 25px rgba(0, 0, 0, 0.1);
+
+        @include displayFlex(center, center, column);
+
+        &::after {
+          @include font(18px, 700);
+          color: $color-red;
+        }
+      }
+
+      &-prev {
+        &::after {
+          content: "←";
+        }
+      }
+
+      &-next {
+        &::after {
+          content: "→";
+        }
+      }
+    }
+  }
+}

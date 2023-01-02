@@ -1,0 +1,105 @@
+.createCategory {
+    position: fixed;
+    inset: 0;
+  
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  
+    display: none;
+  
+    &.is_active{
+      display: block;
+    }
+  
+    &-body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  
+      background-color: $color-white;
+  
+      width: 600px;
+  
+      box-shadow: 0px 10px 30px rgba(133, 143, 164, 0.1);
+      border-radius: 6px;
+      padding: 60px 40px 45px 40px;
+  
+      @include displayFlex(center, center, column);
+      gap: 20px;
+    }
+  
+    &-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+  
+      width: 16px;
+      height: 2px;
+  
+      background-color: #858fa4;
+  
+      rotate: 45deg;
+      border-radius: 5px;
+  
+      cursor: pointer;
+  
+      transition: background-color linear 0.3s, rotate linear 0.3s;
+  
+      &:hover {
+        background-color: #141619;
+        rotate: 135deg;
+      }
+  
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+  
+        width: 16px;
+        height: 2px;
+  
+        background-color: inherit;
+  
+        rotate: 90deg;
+        border-radius: 5px;
+      }
+    }
+  
+    &-title {
+      @include font(30px, 700);
+      color: #1a1a25;
+    }
+  
+    &-form {
+      @include displayFlex(flex-start, flex-start, column);
+      gap: 12px;
+  
+      width: 100%;
+    }
+  
+    &-input {
+      width: 100%;
+  
+      background-color: #f7f7f7;
+  
+      border: 1px solid rgba(144, 156, 181, 0.5);
+      border-radius: 6px;
+  
+      @include font(15px, 600);
+      color: $color-black;
+  
+      padding: 13px 10px;
+  
+      &::placeholder {
+        color: #909cb5;
+        @include font(16px, 400);
+      }
+    }
+  
+    &-button {
+      border: none;
+    }
+  }
+  

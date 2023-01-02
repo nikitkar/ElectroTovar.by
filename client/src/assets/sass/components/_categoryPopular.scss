@@ -1,0 +1,112 @@
+@import "../libs/mixin";
+@import "../variables";
+
+.popular-category {
+  padding: 100px 0;
+  background-color: $color-white;
+
+  &__wrapper {
+    @include displayFlex(flex-start, flex-start, column);
+
+    width: 100%;
+  }
+
+  &__title {
+    @include font($size-title_section, 700);
+    color: $color-dark_grey;
+  }
+
+  &__list {
+    width: 100%;
+
+    padding: 4 0px 0;
+  }
+
+  &__item {
+    width: 160px;
+    height: unset;
+
+    &-box {
+      width: 160px;
+      height: 100%;
+
+      border: 1px solid #d3d2d2;
+      border-radius: 10px;
+      padding: 16px 10px;
+
+      transition: box-shadow linear 0.2s;
+
+      @include displayFlex(center, flex-start, column);
+
+      &:hover {
+        box-shadow: 0 -2px 4px rgb(35 31 32 / 5%), 0 4px 8px rgb(35 31 32 / 10%);
+      }
+    }
+
+    &-img__block {
+      height: 80px;
+
+      cursor: pointer;
+
+      &_img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-title {
+      @include font($size-main, 500);
+      color: $color-dark_grey;
+
+      cursor: pointer;
+
+      text-align: center;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .swiper {
+    &-wrapper {
+      width: 100%;
+
+      padding: 30px 0;
+    }
+    &-button {
+      &-prev,
+      &-next {
+        width: 50px;
+        height: 50px;
+
+        background-color: $color-white;
+
+        border-radius: 50%;
+
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07),
+          0px 0px 25px rgba(0, 0, 0, 0.1);
+
+        @include displayFlex(center, center, column);
+
+        &::after {
+          @include font(18px, 700);
+          color: $color-red;
+        }
+      }
+
+      &-prev {
+        &::after {
+          content: "←";
+        }
+      }
+
+      &-next {
+        &::after {
+          content: "→";
+        }
+      }
+    }
+  }
+}

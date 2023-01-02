@@ -1,0 +1,12 @@
+@import "./fonts";
+@import "./variables";
+
+@import "./libs/reset";
+@import "./libs/mixin";
+@import "./libs/component";
+
+@import "./components/all";
+
+.main{
+    background-color: $color-bg_main;
+}

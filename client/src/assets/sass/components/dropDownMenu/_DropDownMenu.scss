@@ -1,0 +1,54 @@
+.drop-down {
+  position: relative;
+
+  &-wrap {
+    @include displayFlex(flex-start, space-between);
+    gap: 30px;
+  }
+
+  &-selected {
+    @include font(20px, 600);
+    color: $color-black;
+  }
+
+  &-list {
+    @include displayFlex(flex-start, flex-start, column);
+
+    position: absolute;
+    top: 41px;
+    left: 0;
+
+    max-width: 300px;
+
+    background-color: $color-white;
+
+    border-radius: 6px;
+
+    display: none;
+
+    z-index: 999;
+
+    border: 1px solid $color-black;
+
+    &.is_active {
+      display: flex;
+    }
+  }
+
+  &-item {
+    width: 100%;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    @include font(16px, 600);
+
+    transition: background-color linear 0.3s;
+    color: $color-black;
+
+    &:hover {
+      background-color: #e4e4e4;
+    }
+  }
+}

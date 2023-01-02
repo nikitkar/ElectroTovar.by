@@ -1,0 +1,29 @@
+.admins {
+  padding: 40px 0;
+  background-color: $color-white;
+
+  &-wrapper{
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 40px;
+    
+    width: 100%;
+  }
+
+  &-add{
+    @include displayFlex(flex-start, space-between);
+    gap: 30px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+
+  .add{
+    &-products__product{
+        
+    }
+  }
+}
