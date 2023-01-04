@@ -11,7 +11,9 @@ const ProductItem = observer((props) => {
   const { products, isActiveHeader } = useContext(Context);
 
   useEffect(() => {
-    fetchProduct().then((data) => products.setProduct(data));
+    fetchProduct().then((data) => {
+      products.setProduct(data);
+    });
   }, [products]);
 
   return (

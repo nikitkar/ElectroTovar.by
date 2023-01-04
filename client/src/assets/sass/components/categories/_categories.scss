@@ -49,7 +49,7 @@
   }
 
   &-list {
-    @include displayFlex(flex-start, space-between);
+    @include displayFlex(flex-start, flex-start);
     gap: 30px;
     flex-wrap: wrap;
     width: 100%;

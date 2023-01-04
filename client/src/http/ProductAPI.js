@@ -6,8 +6,14 @@ export const createProduct = async (product) => {
   return data;
 };
 
-export const fetchProduct = async () => {
-  const { data } = await $host.get("/api/product");
+export const fetchProduct = async (idCategory, page, limit) => {
+  const { data } = await $host.get("/api/product", {
+    params: {
+      idCategory,
+      page,
+      limit,
+    },
+  });
 
   return data;
 };
