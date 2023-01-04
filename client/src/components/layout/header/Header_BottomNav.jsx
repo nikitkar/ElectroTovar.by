@@ -1,13 +1,22 @@
+import { useContext } from "react";
+import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
+
+import { Context } from "../../../index";
 
 import catalogIcon from "../../../assets/images/icon/catalogIcon.svg";
 import search from "../../../assets/images/icon/search.svg";
 
-const HeaderBottomNav = () => {
+const HeaderBottomNav = observer(() => {
+  const { isActiveHeader } = useContext(Context);
+
   return (
     <nav className="nav">
       <div className="nav-left">
-        <button className="catalog  btn-icon" type="button">
+        <button
+          className="catalog  btn-icon"
+          type="button"
+          onClick={() => isActiveHeader.setActiveHeader(true)}>
           <span className="catalog-icon  btn-icon_icon">
             <img
               className="catalog-icon_img  btn-icon_icon-img"
@@ -53,6 +62,6 @@ const HeaderBottomNav = () => {
       </ul>
     </nav>
   );
-};
+});
 
 export default HeaderBottomNav;

@@ -6,8 +6,6 @@ class CategoryController {
   async create(req, res, next) {
     const { name, countAll = 0 } = req.body;
 
-    console.log(name);
-
     if (!name || name == "") return next(ApiError.badRequest("Incorrect name"));
 
     const query = `INSERT INTO category(nameCategory, countAllCategory) VALUES ('${name}', ${countAll})`;

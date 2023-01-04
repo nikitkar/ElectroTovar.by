@@ -9,8 +9,10 @@
     display: none;
     visibility: hidden;
 
-    // display: block;
-    // visibility: visible;
+    &.is_active {
+      display: block;
+      visibility: visible;
+    }
   }
   &-main {
     position: absolute;
@@ -34,8 +36,10 @@
     visibility: hidden;
     transition: transform 0.25s 0.15s ease;
 
-    // display: block;
-    // visibility: visible;
+    &.is_active {
+      display: block;
+      visibility: visible;
+    }
   }
 
   &-navigation {

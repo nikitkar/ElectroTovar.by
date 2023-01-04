@@ -1,9 +1,11 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App";
 import UserStore from "./store/UserStore";
 import ProductStore from "./store/ProductStore";
+import HeaderStore from "./store/HeaderStore";
+import CategoriesByProductsStore from "./store/CategoriesByProducts";
 
 export const Context = createContext(null);
 
@@ -15,6 +17,8 @@ root.render(
       products: new ProductStore(),
       categories: new ProductStore(),
       brands: new ProductStore(),
+      isActiveHeader: new HeaderStore(),
+      categoriesByProducts: new CategoriesByProductsStore(),
       authModal: true,
     }}>
     <App />

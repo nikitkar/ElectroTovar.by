@@ -17,7 +17,11 @@ class ProductController {
       const { img } = req.files;
 
       if (!name || !price || !count || !info || !idCategory || !img)
-        return next(ApiError.badRequest("Incorrect name / price / count / info / idCategory / img"));
+        return next(
+          ApiError.badRequest(
+            "Incorrect name / price / count / info / idCategory / img"
+          )
+        );
 
       let fileName = uuidv4() + ".jpg";
       img.mv(path.resolve(__dirname, "..", "static", fileName), (err) => {
@@ -97,7 +101,7 @@ class ProductController {
       const { id } = req.params;
 
       const productOneQuery = `
-      SELECT product.nameProduct, product.priceProduct, product.countProduct, product.imgProduct, category.nameCategory FROM product, category WHERE product.idProduct=${id}`;
+      SELECT product.nameProduct, product.priceProduct, product.countProduct, product.imgProduct, category.nameCategory FROM product, category WHERE product.idProduct=${id} AND product.idCategory=category.idCategory`;
 
       const product_infoQuery = `SELECT * FROM product_info WHERE idProduct=${id}`;
 

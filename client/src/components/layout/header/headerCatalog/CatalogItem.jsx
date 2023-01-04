@@ -1,8 +1,18 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { Context } from "../../../../index";
+import { CATEGORY_PRODUCTS_ROUTE } from "../../../../utils/consts";
+
 const CatalogItem = (props) => {
+  const { isActiveHeader } = useContext(Context);
+
   return (
-    <Link to="/" className="catalog-navigation__item" id={props.id}>
+    <Link
+      to={CATEGORY_PRODUCTS_ROUTE + "/" + props.id}
+      className="catalog-navigation__item"
+      id={props.id}
+      onClick={() => isActiveHeader.setActiveHeader(false)}>
       <div className="catalog-navigation__item-img">
         <img
           width="56"

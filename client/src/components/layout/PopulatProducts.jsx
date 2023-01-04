@@ -34,7 +34,6 @@ const PopulatProducts = observer(() => {
                   price={product.priceProduct}
                   id={product.idProduct}
                   discount={product.priceProduct}
-                  //   onClick={() => products.setSelectedCategories(product)}
                 />
               </SwiperSlide>
             ))}
