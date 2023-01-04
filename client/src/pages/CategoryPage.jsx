@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 
@@ -10,7 +10,6 @@ import { fetchProduct } from "../http/ProductAPI";
 const CategoryPage = observer(() => {
   const { id } = useParams();
   const { categories, categoriesByProducts } = useContext(Context);
-  const [sortedActiveClass, setSortedActiveClass] = useState("popularity");
 
   const pageCount = Math.ceil(
     categoriesByProducts.totalCount / categoriesByProducts.limit
@@ -58,39 +57,55 @@ const CategoryPage = observer(() => {
               <div className="sorted-list">
                 <div
                   className={
-                    sortedActiveClass === "popularity"
+                    categoriesByProducts.filter === "popularity"
                       ? "sorted-item is_active"
                       : "sorted-item"
                   }
-                  onClick={() => setSortedActiveClass("popularity")}>
+                  onClick={() => {
+                    categoriesByProducts.setFilter("popularity");
+                    categoriesByProducts.filterEvent();
+                  }}>
                   <p className="sorted-item__title">По популярности</p>
                 </div>
                 <div
                   className={
-                    sortedActiveClass === "novelty"
+                    categoriesByProducts.filter === "novelty"
                       ? "sorted-item is_active"
                       : "sorted-item"
                   }
-                  onClick={() => setSortedActiveClass("novelty")}>
+                  onClick={() => {
+                    categoriesByProducts.setFilter("novelty");
+                    categoriesByProducts.filterEvent();
+                  }}>
                   <p className="sorted-item__title">По новизне</p>
                 </div>
                 <div
                   className={
-                    sortedActiveClass === "price"
+                    categoriesByProducts.filter === "priceCheap"
                       ? "sorted-item is_active"
                       : "sorted-item"
                   }
-                  onClick={() => setSortedActiveClass("price")}>
-                  <p className="sorted-item__title">По цене</p>
+                  onClick={() => {
+                    categoriesByProducts.setFilter("priceCheap");
+                    categoriesByProducts.filterEvent();
+                  }}>
+                  <p className="sorted-item__title">
+                    По цене (сначала дешевый)
+                  </p>
                 </div>
                 <div
                   className={
-                    sortedActiveClass === "rating"
+                    categoriesByProducts.filter === "priceExpensive"
                       ? "sorted-item is_active"
                       : "sorted-item"
                   }
-                  onClick={() => setSortedActiveClass("rating")}>
-                  <p className="sorted-item__title">По рейтингу</p>
+                  onClick={() => {
+                    categoriesByProducts.setFilter("priceExpensive");
+                    categoriesByProducts.filterEvent();
+                  }}>
+                  <p className="sorted-item__title">
+                    По цене (сначала дорогой)
+                  </p>
                 </div>
               </div>
 
@@ -123,10 +138,6 @@ const CategoryPage = observer(() => {
                     {page}
                   </div>
                 ))}
-                {/* <div className="">1</div> */}
-                {/* <div className="navigation-item">3</div>
-                <div className="navigation-item">4</div>
-                <div className="navigation-item">5</div> */}
               </div>
             </div>
           </div>

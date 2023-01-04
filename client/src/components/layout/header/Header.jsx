@@ -9,13 +9,34 @@ import { ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../../../utils/consts";
 import HeaderBottomNav from "./Header_BottomNav";
 import HeaderCatalogShow from "./headerCatalog/Header_CatalogShow";
 
-import logo from "../../../assets/images/logo/logo.svg";
+import logoIcon from "../../../assets/images/logo/logo.svg";
 import userAvatar from "../../../assets/images/icon/userAvatar.svg";
-import basket from "../../../assets/images/icon/basket.svg";
+import basketIcon from "../../../assets/images/icon/basket.svg";
+import { useEffect } from "react";
 
 const Header = observer(() => {
-  const { user } = useContext(Context);
+  const { user, basket } = useContext(Context);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // basket.addItem(1);
+    // basket.addItem(1);
+    // basket.addItem(2);
+    // basket.addItem(2);
+    // basket.addItem(2);
+    // basket.addItem(2);
+    // basket.addItem(3);
+    // basket.addItem(3);
+    // basket.addItem(3);
+    // basket.addItem(3);
+    // basket.addItem(3);
+    // basket.addItem(3);
+    // basket.addItem(3);
+    // basket.addItem(4);
+    // basket.addItem(4);
+
+    // basket.saveLocalStorage();
+  }, [basket]);
 
   const logOut = () => {
     user.setUser({});
@@ -29,7 +50,11 @@ const Header = observer(() => {
         <div className="header-wrapper">
           <div className="header-top">
             <Link className="logo" to={HOME_ROUTE}>
-              <img className="logo__img" src={logo} alt="Логотип компании" />
+              <img
+                className="logo__img"
+                src={logoIcon}
+                alt="Логотип компании"
+              />
             </Link>
 
             <div className="header-top_right">
@@ -75,8 +100,8 @@ const Header = observer(() => {
             <HeaderBottomNav />
 
             <div className="header-nav_bar">
-              <div className="header-nav_bar-item  basket">
-                <img className="basket-img" src={basket} alt="Корзина" />
+              <div className="header-nav_bar-item  basketIcon">
+                <img className="basketIcon-img" src={basketIcon} alt="Корзина" />
               </div>
             </div>
           </div>

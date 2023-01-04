@@ -7,6 +7,7 @@ export default class CategoriesByProductsStore {
     this._totalCount = 0;
     this._limit = 12;
     this._selectedCategory = 1;
+    this._filter = "popularity";
 
     makeAutoObservable(this);
   }
@@ -26,9 +27,32 @@ export default class CategoriesByProductsStore {
     this._limit = limit;
   }
 
+  setFilter(filter) {
+    this._filter = filter;
+  }
+
   setSelectedCategory(selectedCategory) {
     this.setPage(1);
     this._selectedCategory = selectedCategory;
+  }
+
+  filterEvent() {
+    switch (this._filter) {
+      case "popularity":
+        this._pages.sort((a, b) => (a.idProduct > b.idProduct ? 1 : -1));
+        break;
+      case "novelty":
+        this._pages.sort((a, b) => (a.idProduct < b.idProduct ? 1 : -1));
+        break;
+      case "priceCheap":
+        this._pages.sort((a, b) => (a.priceProduct > b.priceProduct ? 1 : -1));
+        break;
+      case "priceExpensive":
+        this._pages.sort((a, b) => (a.priceProduct < b.priceProduct ? 1 : -1));
+        break;
+      default:
+        this._pages.sort((a, b) => (a.idProduct > b.idProduct ? 1 : -1));
+    }
   }
 
   get pages() {
@@ -46,5 +70,8 @@ export default class CategoriesByProductsStore {
   }
   get selectedCategory() {
     return this._selectedCategory;
+  }
+  get filter() {
+    return this._filter;
   }
 }

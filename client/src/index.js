@@ -6,6 +6,7 @@ import UserStore from "./store/UserStore";
 import ProductStore from "./store/ProductStore";
 import HeaderStore from "./store/HeaderStore";
 import CategoriesByProductsStore from "./store/CategoriesByProducts";
+import BasketStore from "./store/BasketStore";
 
 export const Context = createContext(null);
 
@@ -19,6 +20,7 @@ root.render(
       brands: new ProductStore(),
       isActiveHeader: new HeaderStore(),
       categoriesByProducts: new CategoriesByProductsStore(),
+      basket: new BasketStore(),
       authModal: true,
     }}>
     <App />

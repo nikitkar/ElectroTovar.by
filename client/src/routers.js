@@ -5,6 +5,8 @@ import {
   HOME_ROUTE,
   DEVICE_ROUTE,
   CATEGORY_PRODUCTS_ROUTE,
+  CART_ROUTER,
+  CHECKOUT_ROUTER,
 } from "./utils/consts";
 
 import Admin from "./pages/Admin";
@@ -12,11 +14,21 @@ import Auth from "./pages/Auth";
 import DevicePage from "./pages/DevicePage";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
+import Basket from "./pages/Basket";
+import Checkout from "./pages/Checkout";
 
 export const authRoutes = [
   {
     path: ADMIN_ROUTE,
     element: <Admin />,
+  },
+  {
+    path: CART_ROUTER,
+    element: <Basket />,
+  },
+  {
+    path: CHECKOUT_ROUTER,
+    element: <Checkout />,
   },
 ];
 
