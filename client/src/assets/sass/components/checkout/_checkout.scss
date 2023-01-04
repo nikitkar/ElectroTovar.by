@@ -1,0 +1,159 @@
+.checkout {
+  padding: 40px 0;
+
+  &-wrapper {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 50px;
+
+    width: 100%;
+  }
+
+  &-title {
+    @include font(34px, 700);
+    color: $color-dark_grey;
+  }
+
+  &-heading-title {
+    @include font(28px, 700);
+    color: $color-dark_grey;
+  }
+
+  &-body {
+    @include displayFlex(flex-start, space-between);
+    gap: 30px;
+
+    width: 100%;
+  }
+
+  &-left {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 50px;
+
+    width: 100%;
+
+    .personal-info {
+      @include displayFlex(flex-start, flex-start, column);
+      gap: 30px;
+
+      width: 100%;
+
+      &-wrap {
+        @include displayFlex(flex-start, flex-start, column);
+        gap: 5px;
+      }
+
+      &-text {
+        @include font(13px, 500);
+        color: $color-dark_grey;
+      }
+
+      &-input {
+        background: #ffffff;
+        border: 1px solid rgba(144, 156, 181, 0.5);
+        border-radius: 6px;
+
+        padding: 12px 10px;
+
+        @include font(16px, 400);
+        color: black;
+
+        &::placeholder {
+          @include font(16px, 400);
+          color: #909cb5;
+        }
+      }
+    }
+
+    .receiving {
+      @include displayFlex(flex-start, flex-start, column);
+      gap: 30px;
+
+      width: 100%;
+
+      &-list {
+        @include displayFlex(flex-start, flex-start, column);
+        gap: 4px;
+      }
+
+      &-item {
+        @include displayFlex(center, flex-start);
+        gap: 5px;
+
+        &__input {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  &-aside {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 20px;
+    width: 450px;
+
+    &-title {
+      @include font(28px, 700);
+      color: $color-dark_grey;
+    }
+
+    &-list {
+      @include displayFlex(flex-start, flex-start, column);
+      gap: 15px;
+    }
+
+    &-item {
+      width: 100%;
+
+      @include displayFlex(flex-start, space-between);
+      gap: 7px;
+
+      &__img {
+        object-fit: cover;
+      }
+
+      &__title {
+        @include font(14px, 600);
+        color: $color-dark_grey;
+      }
+
+      &__price {
+        @include font(18px, 700);
+        color: $color-dark_grey;
+
+        @include displayFlex(flex-end, flex-start, column);
+
+        & span {
+          margin-top: auto;
+
+          @include font(12px, 400);
+          color: $color-dark_grey;
+        }
+      }
+    }
+  }
+
+  &-order {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 10px;
+
+    width: 100%;
+
+    &-item {
+      @include displayFlex(flex-start, space-between);
+      gap: 20px;
+
+      width: 100%;
+
+      &__title {
+        @include font(15px, 400);
+        color: $color-dark_grey;
+      }
+
+      &__price {
+        @include font(18px, 700);
+        color: $color-dark_grey;
+      }
+    }
+  }
+}

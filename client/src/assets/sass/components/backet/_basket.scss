@@ -1,0 +1,115 @@
+.basket {
+  padding: 40px 0;
+  background-color: #f7f7f7;
+
+  &-wrapper {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 50px;
+
+    width: 100%;
+  }
+
+  &-title {
+    @include font($size-title_card-product, 800);
+    color: $color-dark_grey;
+  }
+
+  &-body {
+    @include displayFlex(flex-start, space-between);
+    gap: 30px;
+
+    width: 100%;
+  }
+
+  &-list {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 20px;
+
+    max-width: 900px;
+    width: 100%;
+  }
+
+  &-item {
+    @include displayFlex(flex-start, flex-start);
+
+    width: 100%;
+
+    border-radius: 6px;
+
+    background-color: $color-white;
+
+    &-content {
+      padding: 20px;
+      width: 100%;
+
+      @include displayFlex(flex-start, space-between);
+      gap: 20px;
+    }
+
+    &__img {
+      object-fit: contain;
+
+      &-wrap {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    &-title {
+      @include font(18px, 400);
+      color: $color-dark_grey;
+
+      max-width: 480px;
+    }
+
+    &-price {
+      @include font(17px, 700);
+      color: $color-dark_grey;
+    }
+  }
+
+  &-aside {
+    width: 500px;
+    padding: 30px;
+
+    background-color: #ffffff;
+    border-radius: 6px;
+
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 30px;
+
+    &-title {
+      @include font(28px, 700);
+      color: $color-dark_grey;
+    }
+
+    &-wrap {
+      @include displayFlex(flex-start, space-between);
+      gap: 30px;
+
+      width: 100%;
+    }
+
+    &-text {
+      @include font(15px, 400);
+      color: $color-dark_grey;
+    }
+
+    &-price {
+      @include font(18px, 700);
+      color: $color-dark_grey;
+    }
+
+    &-total {
+      &__text {
+        @include font(15px, 700);
+        color: $color-dark_grey;
+      }
+
+      &__price {
+        @include font(40px, 700);
+        color: $color-dark_grey;
+      }
+    }
+  }
+}
