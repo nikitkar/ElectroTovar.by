@@ -31,6 +31,7 @@ const PopulatCategory = observer(() => {
                 <CardCategory
                   path_img={"/" + category.imgCategory}
                   title={category.nameCategory}
+                  to={category.idCategory}
                 />
               </SwiperSlide>
             ))}

@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { CATEGORY_PRODUCTS_ROUTE } from "../../../utils/consts";
 
 const CardCategory = (props) => {
   return (
-    <Link className="popular-category__item-box" to="/">
+    <Link
+      className="popular-category__item-box"
+      to={CATEGORY_PRODUCTS_ROUTE + "/" + props.to}>
       <div className="popular-category__item-img__block">
         <img
           src={process.env.REACT_APP_API_URL + props.path_img}

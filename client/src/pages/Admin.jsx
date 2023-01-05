@@ -1,10 +1,8 @@
 import { useState } from "react";
-import CreateBrand from "../components/modals/CreateBrand";
 import CreateCategory from "../components/modals/CreateCategory";
 import CreateProduct from "../components/modals/CreateProduct";
 
 const Admin = () => {
-  const [brandVisible, setBrandVisible] = useState(false);
   const [categoryVisible, setCategoryVisible] = useState(false);
   const [productVisible, setProductVisible] = useState(false);
 
@@ -23,17 +21,8 @@ const Admin = () => {
               onClick={() => setCategoryVisible(true)}>
               Добавить категорию
             </button>
-            <button
-              className="add-products__brand  btn-text"
-              onClick={() => setBrandVisible(true)}>
-              Добавить бренд
-            </button>
           </div>
 
-          <CreateBrand
-            stateModal={brandVisible}
-            onClick={() => setBrandVisible(false)}
-          />
           <CreateCategory
             stateModal={categoryVisible}
             onClick={() => setCategoryVisible(false)}

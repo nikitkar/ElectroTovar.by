@@ -17,7 +17,7 @@ const CatalogItem = (props) => {
         <img
           width="56"
           height="56"
-          src={"/" + props.imgCategory}
+          src={process.env.REACT_APP_API_URL + "/" + props.imgCategory}
           alt={props.nameCategory}
         />
       </div>

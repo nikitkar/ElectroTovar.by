@@ -1,16 +1,11 @@
 import { observer } from "mobx-react-lite";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 
-import { fetchBrand } from "../../http/BrandAPI";
 import { Context } from "../../index";
 
 const DropDownMenu = observer(({ title, store }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const { categories, brands } = useContext(Context);
-
-  useEffect(() => {
-    fetchBrand().then((data) => brands.setBrand(data));
-  }, [brands]);
+  const { categories } = useContext(Context);
 
   return (
     <div className="drop-down-wrap">
@@ -30,15 +25,6 @@ const DropDownMenu = observer(({ title, store }) => {
                   <p className="drop-down-item__title">
                     {category.nameCategory}
                   </p>
-                </li>
-              ))
-            : store === "brands"
-            ? brands.brands.map((brand, index) => (
-                <li
-                  className="drop-down-item"
-                  key={index}
-                  onClick={() => brands.setSelectedBrand(brand)}>
-                  <p className="drop-down-item__title">{brand.nameBrand}</p>
                 </li>
               ))
             : null}

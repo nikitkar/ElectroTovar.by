@@ -4,7 +4,6 @@ export default class ProductStore {
   constructor() {
     this._products = [];
     this._categories = [];
-    this._brands = [];
 
     this._selectedCategory = {};
     this._selectedBrand = {};
@@ -20,16 +19,8 @@ export default class ProductStore {
     this._categories = category;
   }
 
-  setBrand(brand) {
-    this._brands = brand;
-  }
-
   setSelectedCategories(category) {
     this._selectedCategory = category;
-  }
-
-  setSelectedBrand(brand) {
-    this._selectedBrand = brand;
   }
 
   get products() {
@@ -40,15 +31,7 @@ export default class ProductStore {
     return this._categories;
   }
 
-  get brands() {
-    return this._brands;
-  }
-
   get selectedCategory() {
     return this._selectedCategory;
-  }
-
-  get selectedBrand() {
-    return this._selectedBrand;
   }
 }
