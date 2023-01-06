@@ -3,15 +3,20 @@ import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../../index";
 import { fetchCategory } from "../../../../http/CategoryAPI";
+import { fetchProduct } from "../../../../http/ProductAPI";
+
 import CatalogItem from "./CatalogItem";
 import ProductItem from "./ProductItem";
 
 const HeaderCatalogShow = observer(() => {
-  const { categories, isActiveHeader } = useContext(Context);
+  const { products, categories, isActiveHeader } = useContext(Context);
 
   useEffect(() => {
     fetchCategory().then((data) => categories.setCategory(data));
-  }, [categories]);
+    fetchProduct().then((data) => {
+      products.setProduct(data);
+    });
+  }, []);
 
   return (
     <div className="catalog">
@@ -43,7 +48,7 @@ const HeaderCatalogShow = observer(() => {
               </ul>
             </div>
             <div className="catalog-navigation-drop-wrap">
-              {categories.categories.map((category, index) => (
+              {products.products.map((category, index) => (
                 <ProductItem key={index} id={category.idCategory} />
               ))}
             </div>

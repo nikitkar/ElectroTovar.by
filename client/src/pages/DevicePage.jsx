@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { observer } from "mobx-react-lite";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+
+import { Context } from "../index";
 
 import basket from "../assets/images/icon/basket.svg";
 import { fetchOneProduct } from "../http/ProductAPI";
 
-const DevicePage = () => {
+const DevicePage = observer(() => {
+  const { user, listPromotionsUsers } = useContext(Context);
   const [products, setProducts] = useState(null);
   const { id } = useParams();
 
@@ -69,10 +73,16 @@ const DevicePage = () => {
                   </button>
                 </div>
                 <div className="product-payment__bonus">
-                  <p className="product-payment__bonus-persent">
-                    {products?.product[0]?.priceProduct - 500} ₽ - цена со
-                    скидкой
-                  </p>
+                  {user.isAuth === true ? (
+                    <p className="product-payment__bonus-persent">
+                      {user.id === -1
+                        ? null
+                        : products?.product[0]?.priceProduct -
+                          products?.product[0]?.priceProduct *
+                            (listPromotionsUsers.percentPromotionsUsers / 100) +
+                          "₽ - цена со скидкой"}
+                    </p>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -81,6 +91,6 @@ const DevicePage = () => {
       </div>
     </section>
   );
-};
+});
 
 export default DevicePage;

@@ -1,20 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../../index";
-import { fetchProduct } from "../../../../http/ProductAPI";
 
 import { DEVICE_ROUTE } from "../../../../utils/consts";
 
 const ProductItem = observer((props) => {
   const { products, isActiveHeader } = useContext(Context);
-
-  useEffect(() => {
-    fetchProduct().then((data) => {
-      products.setProduct(data);
-    });
-  }, [products]);
 
   return (
     <div className="catalog-navigation-drop" id={props.id}>

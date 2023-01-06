@@ -14,15 +14,28 @@ const Auth = observer(() => {
   const navigate = useNavigate();
   const isLogin = location.pathname === REGISTRATION_ROUTE;
 
+  const [nameInput, setNameInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [telephoneInput, setTelephoneInput] = useState("");
+  const [addresslInput, setAddressInput] = useState("");
+
   const [loginInput, setLoginInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
 
   const [typeInputLogin, setTypeInputLogin] = useState("password");
   const [typeInputRerig, setTypeInputRerig] = useState("password");
-  const [typeInputRerigRepeat, setTypeInputRepeat] = useState("password");
 
   const [iconInputLogin, setIconInputLogin] = useState("auth-modal__input-eye");
   const [iconInputRerig, setIconInputRerig] = useState("auth-modal__input-eye");
+
+  const clearInput = () => {
+    setLoginInput((prev) => (prev = ""));
+    setPasswordInput((prev) => (prev = ""));
+    setNameInput((prev) => (prev = ""));
+    setEmailInput((prev) => (prev = ""));
+    setTelephoneInput((prev) => (prev = ""));
+    setAddressInput((prev) => (prev = ""));
+  };
 
   const togglePassInput = (e) => {
     const placeholderInput = e.target.offsetParent.childNodes[0].placeholder;
@@ -34,10 +47,6 @@ const Auth = observer(() => {
           typeInputRerig === "password"
             ? "auth-modal__input-eye  auth-modal__input-see"
             : "auth-modal__input-eye"
-        );
-      } else {
-        setTypeInputRepeat(
-          typeInputRerigRepeat === "password" ? "text" : "password"
         );
       }
     } else {
@@ -55,14 +64,24 @@ const Auth = observer(() => {
       let data;
 
       if (isLogin) {
-        data = await registration(loginInput, passwordInput);
+        data = await registration(
+          loginInput,
+          passwordInput,
+          nameInput,
+          emailInput,
+          telephoneInput,
+          addresslInput
+        );
       } else {
         data = await login(loginInput, passwordInput);
       }
 
+      if (data === undefined) return "check error - " + data;
+
       user.setUser(data);
       user.setIsAuth(true);
       user.setRole(data.role);
+      user.setId(data.id);
 
       navigate(HOME_ROUTE);
     } catch (e) {
@@ -87,8 +106,40 @@ const Auth = observer(() => {
                 type="text"
                 placeholder="Ваша почта"
                 maxLength={35}
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+              />
+              <input
+                className="auth-modal__input  auth-modal__input-text"
+                type="text"
+                placeholder="Ваше Имя"
+                maxLength={100}
+                value={nameInput}
+                onChange={(e) => setNameInput(e.target.value)}
+              />
+              <input
+                className="auth-modal__input  auth-modal__input-text"
+                type="text"
+                placeholder="Ваш номер телефона"
+                maxLength={35}
+                value={telephoneInput}
+                onChange={(e) => setTelephoneInput(e.target.value)}
+              />
+              <input
+                className="auth-modal__input  auth-modal__input-text"
+                type="text"
+                placeholder="Ваш адрес проживания"
+                maxLength={120}
+                value={addresslInput}
+                onChange={(e) => setAddressInput(e.target.value)}
+              />
+              <input
+                className="auth-modal__input  auth-modal__input-text"
+                type="text"
+                placeholder="Ваш логин"
+                maxLength={120}
                 value={loginInput}
-                onChange={(e) => setLoginInput()}
+                onChange={(e) => setLoginInput(e.target.value)}
               />
               <InputPass
                 type={typeInputRerig}
@@ -133,7 +184,10 @@ const Auth = observer(() => {
                 Зарегистрироваться
               </button>
 
-              <Link className="auth-modal__auth" to={LOGIN_ROUTE}>
+              <Link
+                className="auth-modal__auth"
+                to={LOGIN_ROUTE}
+                onClick={clearInput}>
                 Войти
               </Link>
             </>
@@ -146,7 +200,10 @@ const Auth = observer(() => {
                 Войти
               </button>
 
-              <Link className="auth-modal__auth" to={REGISTRATION_ROUTE}>
+              <Link
+                className="auth-modal__auth"
+                to={REGISTRATION_ROUTE}
+                onClick={clearInput}>
                 Зарегистрироваться
               </Link>
             </>

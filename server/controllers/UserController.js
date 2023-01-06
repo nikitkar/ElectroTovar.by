@@ -15,11 +15,11 @@ class UserController {
     const {
       login,
       password,
-      role,
       name,
       email,
-      telephone = "",
-      address = "",
+      telephone,
+      address,
+      role = "USER",
     } = req.body;
 
     if (!login || !password)
@@ -45,26 +45,30 @@ class UserController {
     const idClientQuery = `SELECT max(idClient) as idClient FROM client`;
 
     try {
-      await db.query(clientAUTHQuery, (err, data) => {
-        if (err) return res.json(err);
+      await db.query(clientQuery, (err, data) => {
+        if (err) return res.json("clientQuery error - " + err);
       });
-      db.query(clientQuery, (err, data) => {
-        if (err) return res.json(err);
+      await db.query(clientAUTHQuery, (err, data) => {
+        if (err) return res.json("clientAUTHQuery error - " + err);
       });
     } catch (e) {
       ApiError.badRequest("Error");
     }
 
-    let idClient = await new Promise((resolve) => {
-      db.query(idClientQuery, (err, data) => {
-        if (err) return res.json(err);
-        else return resolve(data);
+    try {
+      let idClient = await new Promise((resolve) => {
+        db.query(idClientQuery, (err, data) => {
+          if (err) return res.json("idClientQuery - " + err);
+          else return resolve(data);
+        });
       });
-    });
-    idClient = JSON.stringify(idClient[0]["idClient"]);
+      idClient = JSON.stringify(idClient[0]["idClient"]);
 
-    const jwtToken = generateJwt(idClient, login, role);
-    return res.json(jwtToken);
+      const jwtToken = generateJwt(idClient, login, role);
+      return res.json({ token: jwtToken });
+    } catch (e) {
+      ApiError.badRequest("Error - " + e.message);
+    }
   }
 
   async login(req, res, next) {

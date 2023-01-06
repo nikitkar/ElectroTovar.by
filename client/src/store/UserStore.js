@@ -5,6 +5,7 @@ export default class User {
     this._isAuth = false;
     this._user = {};
     this._role = "USER";
+    this._id = -1;
 
     makeAutoObservable(this);
   }
@@ -21,6 +22,10 @@ export default class User {
     this._role = role;
   }
 
+  setId(id) {
+    this._id = id;
+  }
+
   get isAuth() {
     return this._isAuth;
   }
@@ -30,5 +35,9 @@ export default class User {
   }
   get role() {
     return this._role;
+  }
+
+  get id() {
+    return this._id;
   }
 }

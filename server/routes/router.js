@@ -10,6 +10,7 @@ import { productWaybillRouter } from "./productWaybillRouter.js";
 import { invoiceRouter } from "./invoiceRouter.js";
 import { saleRouter } from "./saleRouter.js";
 import { salesArchiveRouter } from "./salesArchiveRouter.js";
+import { promotionsUsersRouter } from "./promotionsUsersRouter.js";
 
 const routers = new Router();
 
@@ -23,5 +24,6 @@ routers.use("/productWaybill", productWaybillRouter);
 routers.use("/invoice", invoiceRouter);
 routers.use("/sale", saleRouter);
 routers.use("/salesArchive", salesArchiveRouter);
+routers.use("/promotionsUsers", promotionsUsersRouter);
 
 export { routers };
