@@ -22,14 +22,6 @@ export const authRoutes = [
     path: ADMIN_ROUTE,
     element: <Admin />,
   },
-  {
-    path: CART_ROUTER,
-    element: <Basket />,
-  },
-  {
-    path: CHECKOUT_ROUTER,
-    element: <Checkout />,
-  },
 ];
 
 export const publicRoutes = [
@@ -48,6 +40,14 @@ export const publicRoutes = [
   {
     path: REGISTRATION_ROUTE,
     element: <Auth />,
+  },
+  {
+    path: CART_ROUTER,
+    element: <Basket />,
+  },
+  {
+    path: CHECKOUT_ROUTER,
+    element: <Checkout />,
   },
   {
     path: CATEGORY_PRODUCTS_ROUTE + "/:id",

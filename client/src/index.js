@@ -17,6 +17,7 @@ root.render(
     value={{
       user: new UserStore(),
       products: new ProductStore(),
+      productsAll: new ProductStore(),
       categories: new ProductStore(),
       brands: new ProductStore(),
       isActiveHeader: new HeaderStore(),

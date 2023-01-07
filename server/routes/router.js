@@ -11,11 +11,13 @@ import { invoiceRouter } from "./invoiceRouter.js";
 import { saleRouter } from "./saleRouter.js";
 import { salesArchiveRouter } from "./salesArchiveRouter.js";
 import { promotionsUsersRouter } from "./promotionsUsersRouter.js";
+import { productsRouter } from "./productsRouter.js";
 
 const routers = new Router();
 
 routers.use("/user", userRouter);
 routers.use("/product", productRouter);
+routers.use("/products", productsRouter);
 routers.use("/category", categoryRouter);
 routers.use("/brand", brandRouter);
 routers.use("/pointIssue", pointIssueRouter);

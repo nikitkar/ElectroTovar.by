@@ -1,11 +1,16 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import basket from "../../../assets/images/icon/basket.svg";
+import basketIcon from "../../../assets/images/icon/basket.svg";
 
+import { Context } from "../../../index";
 import { DEVICE_ROUTE } from "../../../utils/consts";
 
 const CardProduct = (props) => {
+  const { basket } = useContext(Context);
   const navigate = useNavigate();
+
+  const addItemBaskets = (id) => basket.addItem(id);
 
   return (
     <>
@@ -31,11 +36,13 @@ const CardProduct = (props) => {
             <p className="hits-item__discount">{props.discount} ₽</p>
           </div>
 
-          <button className="hits-item__btn  btn-icon">
+          <button
+            className="hits-item__btn  btn-icon"
+            onClick={() => addItemBaskets(props.id)}>
             <span className="hits-item__btn-icon  btn-icon_icon">
               <img
                 className="hits-item__btn-icon_img  btn-icon_icon-img"
-                src={basket}
+                src={basketIcon}
                 alt="Каталог"
               />
             </span>

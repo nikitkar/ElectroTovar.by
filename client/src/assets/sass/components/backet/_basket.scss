@@ -29,6 +29,21 @@
     width: 100%;
   }
 
+  &-error {
+    @include font(20px, 400);
+    color: $color-dark_grey;
+
+    &-link {
+      text-decoration: underline;
+      color: blue;
+    }
+  }
+
+  &-message{
+    @include font(20px, 400);
+    color: $color-dark_grey;
+  }
+
   &-item {
     @include displayFlex(flex-start, flex-start);
 
@@ -60,11 +75,21 @@
       color: $color-dark_grey;
 
       max-width: 480px;
+
+      width: 100%;
+    }
+
+
+    &-cost{
+        max-width: 100px;
+        width: 100%;
     }
 
     &-price {
       @include font(17px, 700);
       color: $color-dark_grey;
+
+      text-align: right;
     }
   }
 

@@ -95,6 +95,19 @@ class ProductController {
     }
   }
 
+  async getAllProduct(req, res, next) {
+    try {
+      const productAllQuery = "SELECT * FROM product";
+
+      db.query(productAllQuery, (err, data) => {
+        if (err) return res.json(err);
+        else return res.json(data);
+      });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
+  }
+
   async getOne(req, res, next) {
     try {
       let product;

@@ -4,7 +4,6 @@
 .header {
   background-color: $color-dark_grey;
 
-  // 24px 0 16px 0
   padding: 24px 0 16px;
   width: 100%;
 
@@ -49,9 +48,7 @@
 
       cursor: pointer;
 
-      &:after {
-        content: "1";
-
+      &__count {
         position: absolute;
         top: 2px;
         right: -10px;
@@ -67,18 +64,16 @@
         color: $color-white;
 
         @include displayFlex(center, center);
-
-        // display: none;
       }
     }
   }
 }
 
-.admin{
-    &-link{
-        color: $color-white;
-        white-space: nowrap;
-    }
+.admin {
+  &-link {
+    color: $color-white;
+    white-space: nowrap;
+  }
 }
 
 .communications {

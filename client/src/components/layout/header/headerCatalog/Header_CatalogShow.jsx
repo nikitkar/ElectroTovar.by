@@ -3,20 +3,24 @@ import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../../index";
 import { fetchCategory } from "../../../../http/CategoryAPI";
-import { fetchProduct } from "../../../../http/ProductAPI";
+import { fetchAllProduct, fetchProduct } from "../../../../http/ProductAPI";
 
 import CatalogItem from "./CatalogItem";
 import ProductItem from "./ProductItem";
 
 const HeaderCatalogShow = observer(() => {
-  const { products, categories, isActiveHeader } = useContext(Context);
+  const { products, categories, isActiveHeader, productsAll } =
+    useContext(Context);
 
   useEffect(() => {
     fetchCategory().then((data) => categories.setCategory(data));
     fetchProduct().then((data) => {
       products.setProduct(data);
     });
-  }, []);
+    fetchAllProduct().then((data) => {
+      productsAll.setAllProducts(data);
+    });
+  }, [categories, products, productsAll]);
 
   return (
     <div className="catalog">

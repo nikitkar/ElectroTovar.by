@@ -4,6 +4,7 @@ export default class ProductStore {
   constructor() {
     this._products = [];
     this._categories = [];
+    this._allProducts = [];
 
     this._selectedCategory = {};
     this._selectedBrand = {};
@@ -13,6 +14,10 @@ export default class ProductStore {
 
   setProduct(product) {
     this._products = product;
+  }
+
+  setAllProducts(product){
+    this._allProducts = product;
   }
 
   setCategory(category) {
@@ -25,6 +30,10 @@ export default class ProductStore {
 
   get products() {
     return this._products;
+  }
+
+  get allProducts(){
+    return this._allProducts;
   }
 
   get categories() {

@@ -18,6 +18,12 @@ export const fetchProduct = async (idCategory, page, limit) => {
   return data;
 };
 
+export const fetchAllProduct = async () => {
+  const { data } = await $host.get("/api/products");
+
+  return data;
+};
+
 export const fetchOneProduct = async (id) => {
   const { data } = await $host.get("/api/product/" + id);
 

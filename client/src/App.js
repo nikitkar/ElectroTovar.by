@@ -11,7 +11,7 @@ import { Context } from "./index";
 
 import "./assets/sass/app.scss";
 const App = observer(() => {
-  const { user, listPromotionsUsers } = useContext(Context);
+  const { user, listPromotionsUsers, basket } = useContext(Context);
 
   useEffect(() => {
     check().then((data) => {
@@ -27,7 +27,9 @@ const App = observer(() => {
         );
       });
     });
-  }, [listPromotionsUsers, user]);
+
+    basket.setListBasket(basket.localStorageListBasket);
+  }, [basket, listPromotionsUsers, user]);
 
   return (
     <BrowserRouter>

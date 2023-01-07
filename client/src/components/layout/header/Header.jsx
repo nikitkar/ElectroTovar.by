@@ -1,10 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../index";
 
-import { ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../../../utils/consts";
+import {
+  ADMIN_ROUTE,
+  HOME_ROUTE,
+  LOGIN_ROUTE,
+  CART_ROUTER,
+} from "../../../utils/consts";
 
 import HeaderBottomNav from "./Header_BottomNav";
 import HeaderCatalogShow from "./headerCatalog/Header_CatalogShow";
@@ -12,30 +17,13 @@ import HeaderCatalogShow from "./headerCatalog/Header_CatalogShow";
 import logoIcon from "../../../assets/images/logo/logo.svg";
 import userAvatar from "../../../assets/images/icon/userAvatar.svg";
 import basketIcon from "../../../assets/images/icon/basket.svg";
-import { useEffect } from "react";
 
 const Header = observer(() => {
   const { user, basket } = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // basket.addItem(1);
-    // basket.addItem(1);
-    // basket.addItem(2);
-    // basket.addItem(2);
-    // basket.addItem(2);
-    // basket.addItem(2);
-    // basket.addItem(3);
-    // basket.addItem(3);
-    // basket.addItem(3);
-    // basket.addItem(3);
-    // basket.addItem(3);
-    // basket.addItem(3);
-    // basket.addItem(3);
-    // basket.addItem(4);
-    // basket.addItem(4);
-
-    // basket.saveLocalStorage();
+    basket.setQuantityProducts();
   }, [basket]);
 
   const logOut = () => {
@@ -100,8 +88,19 @@ const Header = observer(() => {
             <HeaderBottomNav />
 
             <div className="header-nav_bar">
-              <div className="header-nav_bar-item  basketIcon">
-                <img className="basketIcon-img" src={basketIcon} alt="Корзина" />
+              <div
+                className="header-nav_bar-item  basketIcon"
+                onClick={() => navigate(CART_ROUTER)}>
+                <img
+                  className="basketIcon-img"
+                  src={basketIcon}
+                  alt="Корзина"
+                />
+                {basket.quantityProducts === 0 ? null : (
+                  <span className="header-nav_bar-item__count">
+                    {basket.quantityProducts}
+                  </span>
+                )}
               </div>
             </div>
           </div>
