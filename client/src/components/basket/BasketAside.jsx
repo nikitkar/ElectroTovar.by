@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 import { Context } from "../../index";
+import { CHECKOUT_ROUTER } from "../../utils/consts";
 
-const BasketAside = observer((props) => {
+const BasketAside = observer(() => {
   const { basket, listPromotionsUsers } = useContext(Context);
 
   return (
@@ -33,9 +35,9 @@ const BasketAside = observer((props) => {
         </span>
       </div>
 
-      <button className="basket-aside-button btn-text">
+      <Link className="basket-aside-button btn-text" to={CHECKOUT_ROUTER}>
         Перейти к оформлению
-      </button>
+      </Link>
     </div>
   );
 });

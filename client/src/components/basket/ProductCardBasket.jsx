@@ -1,17 +1,30 @@
-import { useEffect } from "react";
 import { useContext } from "react";
 import { Context } from "../../index";
 
 const ProductCardBasket = (props) => {
   const { basket, productsAll } = useContext(Context);
 
-  const deleteItem = () => {
-    basket.removeItem(props.id);
-
+  const addItem = (id) => {
+    basket.addItem(id);
     basket.setTotalCost(0);
 
-    basket.listBasket.map((basketItem, indexBasket) =>
-      productsAll.allProducts.map((product, indexProduct) =>
+    basket.listBasket.map((basketItem) =>
+      productsAll.allProducts.map((product) =>
+        basketItem.id === product.idProduct
+          ? basket.setTotalCost(
+              basket.totalCost + basketItem.count * product.priceProduct
+            )
+          : null
+      )
+    );
+  };
+
+  const deleteItem = (id) => {
+    basket.removeItem(id);
+    basket.setTotalCost(0);
+
+    basket.listBasket.map((basketItem) =>
+      productsAll.allProducts.map((product) =>
         basketItem.id === product.idProduct
           ? basket.setTotalCost(
               basket.totalCost + basketItem.count * product.priceProduct
@@ -35,12 +48,21 @@ const ProductCardBasket = (props) => {
       <div className="basket-item-content">
         <h3 className="basket-item-title">{props.title}</h3>
 
-        <button
-          className="basket-item-button_delete  btn-text"
-          type="button"
-          onClick={() => deleteItem()}>
-          Удалить
-        </button>
+        <div className="basket-item-button">
+          <button
+            className="basket-item-button_delete"
+            type="button"
+            onClick={() => deleteItem(props.id)}>
+            -
+          </button>
+          <button className="basket-item-button_total">{props.count}</button>
+          <button
+            className="basket-item-button_add"
+            type="button"
+            onClick={() => addItem(props.id)}>
+            +
+          </button>
+        </div>
 
         <div className="basket-item-cost">
           <p className="basket-item-price">

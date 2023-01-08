@@ -39,7 +39,7 @@
     }
   }
 
-  &-message{
+  &-message {
     @include font(20px, 400);
     color: $color-dark_grey;
   }
@@ -79,17 +79,39 @@
       width: 100%;
     }
 
+    &-button {
+      @include displayFlex(center, center);
+      gap: 10px;
 
-    &-cost{
-        max-width: 100px;
-        width: 100%;
+      &_delete,
+      &_add {
+        width: 28px;
+        height: 28px;
+
+        @include displayFlex(center, center);
+        @include font(16px, 600, "Inter", 1px);
+        color: #384255;
+
+        border: 1px solid $color-text_light;
+        border-radius: 50px;
+      }
+
+      &_total {
+        color: $color-discount;
+        @include font(18px, 400);
+      }
+    }
+
+    &-cost {
+      max-width: 100px;
+      width: 100%;
+
+      text-align: right;
     }
 
     &-price {
       @include font(17px, 700);
       color: $color-dark_grey;
-
-      text-align: right;
     }
   }
 

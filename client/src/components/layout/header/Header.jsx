@@ -96,11 +96,13 @@ const Header = observer(() => {
                   src={basketIcon}
                   alt="Корзина"
                 />
-                {basket.quantityProducts === 0 ? null : (
-                  <span className="header-nav_bar-item__count">
-                    {basket.quantityProducts}
-                  </span>
-                )}
+                {user.isAuth ? (
+                  basket.quantityProducts === 0 ? null : (
+                    <span className="header-nav_bar-item__count">
+                      {basket.quantityProducts}
+                    </span>
+                  )
+                ) : null}
               </div>
             </div>
           </div>

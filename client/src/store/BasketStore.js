@@ -5,10 +5,6 @@ export default class BasketStore {
     this._listBaskets = [];
     this._quantityProducts = 0;
     this._totalCost = 0;
-    //   { id: 1, count: 2 },
-    //   { id: 2, count: 4 },
-    //   { id: 3, count: 5 },
-    //   { id: 4, count: 1 },
 
     makeAutoObservable(this);
   }
@@ -32,12 +28,19 @@ export default class BasketStore {
   }
 
   removeItem(idItem) {
-    let key;
-    this._listBaskets.map((listBasket, index) =>
-      listBasket.id === idItem ? (key = index) : null
-    );
+    // eslint-disable-next-line array-callback-return
+    this._listBaskets.map((listBasket, index) => {
+      if (listBasket.id === idItem) {
+        if (listBasket.count === 0) this._listBaskets.splice(index, 1);
+        else {
+          listBasket.count -= 1;
 
-    this._listBaskets.splice(key, 1);
+          return listBasket.count === 0
+            ? this._listBaskets.splice(index, 1)
+            : null;
+        }
+      }
+    });
 
     this.saveLocalStorage();
     this.setQuantityProducts();

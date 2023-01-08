@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
@@ -9,10 +9,6 @@ import BasketAside from "../components/basket/BasketAside";
 
 const Basket = observer(() => {
   const { user, productsAll, basket } = useContext(Context);
-  const [totalCost, setTotalCost] = useState(0);
-  //   setTotalCost(
-  //     (prev) => prev + basketItem.count * product.priceProduct
-  //   )
 
   useEffect(() => {
     basket.setTotalCost(0);
