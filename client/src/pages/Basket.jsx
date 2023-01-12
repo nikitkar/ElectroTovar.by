@@ -15,7 +15,7 @@ const Basket = observer(() => {
 
     basket.listBasket.map((basketItem, indexBasket) =>
       productsAll.allProducts.map((product, indexProduct) =>
-        basketItem.id === product.idProduct
+        Number(basketItem.id) === product.idProduct
           ? basket.setTotalCost(
               basket.totalCost + basketItem.count * product.priceProduct
             )
@@ -36,9 +36,9 @@ const Basket = observer(() => {
               ) : (
                 <>
                   <div className="basket-list">
-                    {basket.listBasket.map((basketItem, indexBasket) =>
+                    {basket.listBasket.map((basketItem) =>
                       productsAll.allProducts.map((product, indexProduct) =>
-                        basketItem.id === product.idProduct ? (
+                        Number(basketItem.id) === product.idProduct ? (
                           <ProductCardBasket
                             key={indexProduct}
                             id={basketItem.id}

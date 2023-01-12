@@ -8,6 +8,7 @@ import HeaderStore from "./store/HeaderStore";
 import CategoriesByProductsStore from "./store/CategoriesByProducts";
 import BasketStore from "./store/BasketStore";
 import PromotionsUsersStore from "./store/PromotionsUsersStore";
+import PointIssueStore from "./store/PointIssueStore";
 
 export const Context = createContext(null);
 
@@ -19,11 +20,11 @@ root.render(
       products: new ProductStore(),
       productsAll: new ProductStore(),
       categories: new ProductStore(),
-      brands: new ProductStore(),
       isActiveHeader: new HeaderStore(),
       categoriesByProducts: new CategoriesByProductsStore(),
       basket: new BasketStore(),
       listPromotionsUsers: new PromotionsUsersStore(),
+      listPointIssue: new PointIssueStore(),
       authModal: true,
     }}>
     <App />

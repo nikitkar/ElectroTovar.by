@@ -10,7 +10,7 @@ const ProductCardBasket = (props) => {
 
     basket.listBasket.map((basketItem) =>
       productsAll.allProducts.map((product) =>
-        basketItem.id === product.idProduct
+        Number(basketItem.id) === product.idProduct
           ? basket.setTotalCost(
               basket.totalCost + basketItem.count * product.priceProduct
             )
@@ -25,7 +25,7 @@ const ProductCardBasket = (props) => {
 
     basket.listBasket.map((basketItem) =>
       productsAll.allProducts.map((product) =>
-        basketItem.id === product.idProduct
+        Number(basketItem.id) === product.idProduct
           ? basket.setTotalCost(
               basket.totalCost + basketItem.count * product.priceProduct
             )

@@ -2,16 +2,20 @@ import { useContext, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
+import { Context } from "./index";
+
 import AppRouter from "./components/AppRouter";
 import Header from "./components/layout/header/Header";
 import Footer from "./components/layout/footer/Footer";
+
 import { check } from "./http/UserAPI";
 import { fetchPromotionsUsers } from "./http/PromotionsUsersAPI";
-import { Context } from "./index";
+import { fetchPointIssue } from "./http/PointIssueAPI";
 
 import "./assets/sass/app.scss";
 const App = observer(() => {
-  const { user, listPromotionsUsers, basket } = useContext(Context);
+  const { user, listPromotionsUsers, basket, listPointIssue } =
+    useContext(Context);
 
   useEffect(() => {
     check().then((data) => {
@@ -26,10 +30,12 @@ const App = observer(() => {
           dataPro[data.id - 1].percentPromotionsUsers
         );
       });
+
+      fetchPointIssue().then((data) => listPointIssue.setListPointIssue(data));
     });
 
     basket.setListBasket(basket.localStorageListBasket);
-  }, [basket, listPromotionsUsers, user]);
+  }, [basket, listPointIssue, listPromotionsUsers, user]);
 
   return (
     <BrowserRouter>

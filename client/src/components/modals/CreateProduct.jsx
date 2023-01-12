@@ -6,7 +6,7 @@ import DropDownMenu from "../dropDownMenu/DropDownMenu";
 import { Context } from "../../index";
 
 const CreateProduct = observer(({ stateModal, onClick }) => {
-  const { categories, brands } = useContext(Context);
+  const { categories } = useContext(Context);
   const [classModal, setClassModal] = useState("createProduct");
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -37,7 +37,6 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
     formData.append("count", count);
     formData.append("img", img);
     formData.append("idCategory", categories.selectedCategory.idCategory);
-    formData.append("idBrand", brands.selectedBrand.idBrand);
     formData.append("info", JSON.stringify(info));
 
     createProduct(formData).then((data) => onClick());
@@ -69,7 +68,6 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
 
         <div className="createProduct-form">
           <DropDownMenu title="Выберите категорию товара" store="categories" />
-          <DropDownMenu title="Выберите бренд товара" store="brands" />
 
           <input
             className="createProduct-input"

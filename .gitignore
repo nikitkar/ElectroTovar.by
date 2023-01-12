@@ -1,6 +1,6 @@
-.DS_STORE
-
-**/node_modules
+*/node_modules
+/.pnp
+.pnp.js
 
 scripts/flow/*/.flowconfig
 .flowconfig
@@ -9,9 +9,9 @@ scripts/flow/*/.flowconfig
 .grunt
 _SpecRunner.html
 __benchmarks__
-build/
+/build
 remote-repo/
-coverage/
+/coverage
 .module-cache
 fixtures/dom/public/react-dom.js
 fixtures/dom/public/react.js
@@ -38,5 +38,15 @@ packages/react-devtools-extensions/.tempUserDataDir
 packages/react-devtools-inline/dist
 packages/react-devtools-shell/dist
 packages/react-devtools-timeline/dist
+
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 **/.env

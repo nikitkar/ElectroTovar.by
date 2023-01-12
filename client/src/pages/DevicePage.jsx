@@ -4,17 +4,19 @@ import { useParams } from "react-router-dom";
 
 import { Context } from "../index";
 
-import basket from "../assets/images/icon/basket.svg";
+import basketIcon from "../assets/images/icon/basket.svg";
 import { fetchOneProduct } from "../http/ProductAPI";
 
 const DevicePage = observer(() => {
-  const { user, listPromotionsUsers } = useContext(Context);
+  const { user, listPromotionsUsers, basket } = useContext(Context);
   const [products, setProducts] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     fetchOneProduct(id).then((data) => setProducts(data));
   }, [id]);
+
+  const addItemBaskets = (idItem) => basket.addItem(idItem);
 
   return (
     <section className="product">
@@ -59,11 +61,14 @@ const DevicePage = observer(() => {
                   <p className="product-payment__status">В наличии</p>
                 </div>
                 <div className="product-payment__controls">
-                  <button className="product-payment__controls-button  btn-icon">
+                  <button
+                    className="product-payment__controls-button  btn-icon"
+                    type="button"
+                    onClick={() => addItemBaskets(id)}>
                     <span className="product-payment__controls_btn-icon  btn-icon_icon">
                       <img
                         className="product-payment__controls_btn-icon_img  btn-icon_icon-img"
-                        src={basket}
+                        src={basketIcon}
                         alt="В корзину"
                       />
                     </span>

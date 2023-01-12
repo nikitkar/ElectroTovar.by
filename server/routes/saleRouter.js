@@ -5,7 +5,8 @@ import { CheckMiddleware } from "../middleware/CheckMiddleware.js";
 const saleRouter = new Router();
 const saleControlles = new SaleControlles();
 
-saleRouter.post("/", CheckMiddleware("ADMIN"), saleControlles.create);
-saleRouter.get("/", saleControlles.getAll);
+saleRouter.post("/", saleControlles.create);
+saleRouter.get("/numberSale", saleControlles.getNumberSale);
+saleRouter.get("/", CheckMiddleware("ADMIN"), saleControlles.getAll);
 
 export { saleRouter };

@@ -7,10 +7,10 @@ class SaleControlles {
     const {
       idClient,
       idProduct,
-      dataSale = Date.now(),
       priceSale,
       countSale,
       numberSale,
+      dataSale = new Date().toISOString().slice(0, 19).replace("T", " "),
     } = req.body;
 
     if (
@@ -27,15 +27,26 @@ class SaleControlles {
     )
       return next(
         ApiError.badRequest(
-          "Incorrect idClient or idProduct or dataSale or priceSale or countSale or numberSale"
+          "Incorrect idClient or idProduct or priceSale or countSale or priceSale or numberSale"
         )
       );
+
+    //   const dataSale = new Date();
 
     const query = `INSERT INTO sale(idClient, idProduct, dataSale, priceSale, countSale, numberSale) VALUES (${idClient}, ${idProduct}, '${dataSale}', ${priceSale}, ${countSale}, ${numberSale})`;
 
     await db.query(query, (err, data) => {
       if (err) return res.json(err);
       else return res.json({ message: "Successful" });
+    });
+  }
+
+  async getNumberSale(req, res) {
+    const query = `SELECT MAX(numberSale) AS total FROM sale`;
+
+    await db.query(query, (err, data) => {
+      if (err) return res.json(err);
+      else return res.json(data);
     });
   }
 

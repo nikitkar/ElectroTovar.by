@@ -76,12 +76,22 @@
       }
 
       &-item {
-        @include displayFlex(center, flex-start);
+        @include displayFlex(flex-start, flex-start);
         gap: 5px;
 
         &__input {
           width: 20px;
           height: 20px;
+
+          cursor: pointer;
+        }
+
+        &__label {
+          cursor: pointer;
+
+          span {
+            @include font(13px, 400);
+          }
         }
       }
     }
@@ -115,6 +125,8 @@
       &__title {
         @include font(14px, 600);
         color: $color-dark_grey;
+
+        width: 100%;
       }
 
       &__price {
@@ -122,6 +134,7 @@
         color: $color-dark_grey;
 
         @include displayFlex(flex-end, flex-start, column);
+        width: 100px;
 
         & span {
           margin-top: auto;

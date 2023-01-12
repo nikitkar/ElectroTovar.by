@@ -4,12 +4,7 @@ import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../index";
 
-import {
-  ADMIN_ROUTE,
-  HOME_ROUTE,
-  LOGIN_ROUTE,
-  CART_ROUTER,
-} from "../../../utils/consts";
+import { HOME_ROUTE, LOGIN_ROUTE, CART_ROUTER } from "../../../utils/consts";
 
 import HeaderBottomNav from "./Header_BottomNav";
 import HeaderCatalogShow from "./headerCatalog/Header_CatalogShow";
@@ -31,6 +26,8 @@ const Header = observer(() => {
     user.setIsAuth(false);
     user.setRole("USER");
   };
+
+  const adminPage = () => (window.location.href = "http://localhost:3001");
 
   return (
     <header className="header">
@@ -60,7 +57,9 @@ const Header = observer(() => {
                   <button
                     className="admin-link"
                     type="button"
-                    onClick={() => navigate(ADMIN_ROUTE)}>
+                    onClick={() => adminPage()}
+                    // onClick={() => navigate(ADMIN_ROUTE)}
+                  >
                     Админ панель
                   </button>
                 </div>
