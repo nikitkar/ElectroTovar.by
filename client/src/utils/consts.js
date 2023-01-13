@@ -6,3 +6,15 @@ export const DEVICE_ROUTE = "/product";
 export const CATEGORY_PRODUCTS_ROUTE = "/category";
 export const CART_ROUTER = "/cart";
 export const CHECKOUT_ROUTER = "/checkout";
+
+export const CLIENT_DATABASE = "client"; // + promotionsUsers
+export const CREDENTIALS_DATABASE = "credentials";
+export const SALE_DATABASE = "sale";
+export const SALES_ARCHIVE_DATABASE = "salesArchive";
+export const PRODUCT_DATABASE = "product";
+export const PRODUCT_INFO_DATABASE = "product";
+export const CATEGORY_DATABASE = "category";
+export const POINT_ISSUE_DATABASE = "pointIssue";
+export const SUPPLIERS_DATABASE = "suppliers";
+export const INVOICE_DATABASE = "invoice";
+export const PRODUCT_WAYBILL_DATABASE = "productWaybill";

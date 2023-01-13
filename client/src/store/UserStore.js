@@ -6,6 +6,8 @@ export default class User {
     this._user = {};
     this._role = "USER";
     this._id = -1;
+    
+    this._allUser = [];
 
     makeAutoObservable(this);
   }
@@ -26,6 +28,10 @@ export default class User {
     this._id = id;
   }
 
+  setAllUser(users){
+    return this._allUser = users;
+  }
+
   get isAuth() {
     return this._isAuth;
   }
@@ -39,5 +45,9 @@ export default class User {
 
   get id() {
     return this._id;
+  }
+
+  get allUsers(){
+    return this._allUser;
   }
 }

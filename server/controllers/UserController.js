@@ -104,6 +104,19 @@ class UserController {
     const token = generateJwt(req.user.id, req.user.login, req.user.role);
     return res.json({ token });
   }
+
+  async getAll(req, res) {
+    try {
+      const userAllQuery = "SELECT * FROM client";
+
+      db.query(userAllQuery, (err, data) => {
+        if (err) return res.json(err);
+        else return res.json(data);
+      });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
+  }
 }
 
 export { UserController };

@@ -54,3 +54,9 @@ export const check = async () => {
 
   return jwtDecode(data.token);
 };
+
+export const getAll = async () => {
+  const { data } = await $authHost.get("/api/user/all");
+
+  return data;
+};

@@ -9,6 +9,7 @@ import CategoriesByProductsStore from "./store/CategoriesByProducts";
 import BasketStore from "./store/BasketStore";
 import PromotionsUsersStore from "./store/PromotionsUsersStore";
 import PointIssueStore from "./store/PointIssueStore";
+import DataTableStore from "./store/DataTableStore";
 
 export const Context = createContext(null);
 
@@ -25,6 +26,7 @@ root.render(
       basket: new BasketStore(),
       listPromotionsUsers: new PromotionsUsersStore(),
       listPointIssue: new PointIssueStore(),
+      dataTables: new DataTableStore(),
       authModal: true,
     }}>
     <App />

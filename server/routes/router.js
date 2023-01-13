@@ -12,6 +12,7 @@ import { salesArchiveRouter } from "./salesArchiveRouter.js";
 import { saleProductRouter } from "./saleProductRouter.js";
 import { promotionsUsersRouter } from "./promotionsUsersRouter.js";
 import { productsRouter } from "./productsRouter.js";
+import { getDataTableRouter } from "./getDataTableRouter.js";
 
 const routers = new Router();
 
@@ -27,5 +28,7 @@ routers.use("/sale", saleRouter);
 routers.use("/salesArchive", salesArchiveRouter);
 routers.use("/salesProduct", saleProductRouter);
 routers.use("/promotionsUsers", promotionsUsersRouter);
+
+routers.use("/getDataTable", getDataTableRouter);
 
 export { routers };
