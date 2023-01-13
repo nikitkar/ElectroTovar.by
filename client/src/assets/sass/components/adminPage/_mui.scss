@@ -1,0 +1,128 @@
+.mui {
+  &-main {
+    @include displayFlex(flex-start, flex-start, column);
+
+    width: 100%;
+
+    .datagrid {
+      &-table {
+        display: table;
+
+        width: 100%;
+
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        table-layout: auto;
+      }
+
+      &-thead {
+        display: table-header-group;
+
+        &-row {
+          color: inherit;
+          display: table-row;
+          vertical-align: middle;
+          outline: 0;
+        }
+
+        &-cell {
+          position: sticky;
+          top: 0;
+          z-index: 2;
+          background-color: #fff;
+
+          display: table-cell;
+
+          vertical-align: inherit;
+
+          border-bottom: 1px solid rgba(224, 224, 224, 1);
+          text-align: left;
+
+          padding: 6px 16px;
+
+          width: auto;
+
+          &-label {
+            @include displayFlex(center, flex-start);
+            display: inline-flex;
+            gap: 6px;
+
+            cursor: pointer;
+          }
+
+          &_icon {
+            width: 18px;
+            height: 18px;
+
+            &.transform{
+                transform: rotate(180deg);
+            }
+
+            svg {
+              width: 18px;
+              height: 18px;
+
+              color: rgba(0, 0, 0, 0.6);
+
+              fill: currentColor;
+            }
+          }
+        }
+      }
+
+      &-tbody {
+        display: table-header-group;
+
+        &-row {
+          color: inherit;
+          display: table-row;
+          vertical-align: middle;
+          outline: 0;
+        }
+
+        &-cell {
+          position: sticky;
+          top: 0;
+          z-index: 2;
+          background-color: #fff;
+
+          display: table-cell;
+
+          vertical-align: inherit;
+
+          border-bottom: 1px solid rgba(224, 224, 224, 1);
+          text-align: left;
+
+          padding: 6px 16px;
+
+          width: auto;
+        }
+      }
+    }
+  }
+
+  &-toolbar {
+  }
+
+  &-paper {
+    position: relative;
+
+    width: 100%;
+
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+
+    -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+      0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+
+    &-data_grid {
+      @include font(16px, 400);
+      color: $color-dark_grey;
+    }
+  }
+}
