@@ -1,11 +1,8 @@
-import { useContext } from "react";
 import { observer } from "mobx-react-lite";
 
-import { Context } from "../index";
 import UserTable from "../components/table/UserTable";
 
 const TablesPage = observer(({ nameTable }) => {
-  const { user } = useContext(Context);
 
   const renderSwitch = () => {
     switch (nameTable) {
