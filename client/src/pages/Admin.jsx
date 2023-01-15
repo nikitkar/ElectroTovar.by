@@ -28,47 +28,57 @@ const Admin = observer(() => {
           <div className="admins-add">
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("CLIENT_DATABASE")}>
+              onClick={() => setValueChange("CLIENT_NAMECOLUMNE")}>
               Клиенты
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("SALE_DATABASE")}>
+              onClick={() => setValueChange("CREDENTIALS_NAMECOLUMNE")}>
+              Личнве данные клиентов
+            </button>
+            <button
+              className="admins-add__button  btn-text"
+              onClick={() => setValueChange("SALE_NAMECOLUMNE")}>
               Продажи
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("SALES_ARCHIVE_DATABASE")}>
+              onClick={() => setValueChange("SALESARCHIVE_NAMECOLUMNE")}>
               Архив продаж
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("PRODUCT_DATABASE")}>
+              onClick={() => setValueChange("PRODUCT_NAMECOLUMNE")}>
               Продукты
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("CATEGORY_DATABASE")}>
+              onClick={() => setValueChange("PRODUCTINFO_NAMECOLUMNE")}>
+                Характеристика продуктов
+            </button>
+            <button
+              className="admins-add__button  btn-text"
+              onClick={() => setValueChange("CATEGORY_NAMECOLUMNE")}>
               Категории
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("POINTISSUE_DATABASE")}>
+              onClick={() => setValueChange("POINTISSUE_NAMECOLUMNE")}>
               Пункты доставки
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("SUPPLIERS_DATABASE")}>
+              onClick={() => setValueChange("SUPPLIERS_NAMECOLUMNE")}>
               Поставщики
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("INVOICE_DATABASE")}>
+              onClick={() => setValueChange("INVOICE_NAMECOLUMNE")}>
               Накладная
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValueChange("PRODUCTWAYBILL_DATABASE")}>
+              onClick={() => setValueChange("PRODUCTWAYBILL_NAMECOLUMNE")}>
               Товарная накладная
             </button>
           </div>

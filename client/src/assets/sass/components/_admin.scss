@@ -10,7 +10,7 @@
   }
 
   &-add {
-    @include displayFlex(flex-start, space-between);
+    @include displayFlex(flex-start, flex-start);
     flex-wrap: wrap;
     gap: 15px;
 

@@ -177,14 +177,46 @@
 
     width: 300px;
 
+    @include font(14px, 400);
+
     &-delete {
       &-wrap {
         @include displayFlex(flex-start, flex-start, column);
         gap: 5px;
       }
+    }
 
-      &-text {
-        @include font(14px, 400);
+    &-search {
+      &-wrap {
+        @include displayFlex(flex-start, flex-start, column);
+        gap: 7px;
+
+        width: 100%;
+      }
+
+      &-column {
+        @include displayFlex(flex-start, flex-start);
+        gap: 4px;
+
+        flex-wrap: wrap;
+      }
+
+      &-select {
+        padding: 3px;
+      }
+
+      &-input {
+        width: 100%;
+
+        background-color: #f7f7f7;
+
+        border: 1px solid rgba(144, 156, 181, 0.5);
+        border-radius: 6px;
+
+        @include font(15px, 600);
+
+        color: #000;
+        padding: 10px 7px;
       }
     }
   }

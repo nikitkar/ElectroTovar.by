@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../index";
 
 const BodyTable = observer(() => {
   const { dataTables } = useContext(Context);
-
-  const [checkedInputClass, setCheckedInputsClass] = useState(0);
 
   const checkedInputOne = (id) => {
     if (dataTables.selectedInputs.length === 0)

@@ -4,7 +4,8 @@ import { Confirm } from "semantic-ui-react";
 
 import { Context } from "../index";
 
-import UserTable from "../components/table/UserTable";
+import RenderTables from "../components/table/function/RenderTables";
+import RenderSelectOption from "../components/table/function/RenderSelectOption";
 
 import CreateCategory from "../components/modals/CreateCategory";
 import CreateProduct from "../components/modals/CreateProduct";
@@ -22,16 +23,6 @@ const TablesPage = observer(({ nameTable }) => {
 
   const open = () => setState({ open: true });
   const close = () => setState({ open: false });
-
-  const renderSwitch = () => {
-    switch (nameTable) {
-      case "CLIENT_DATABASE":
-        return <UserTable />;
-
-      default:
-        return null;
-    }
-  };
 
   const addRow = () => {
     switch (nameTabel_split) {
@@ -87,16 +78,28 @@ const TablesPage = observer(({ nameTable }) => {
         ) : null}
 
         {
-            <div className="mui-toolbar-search-wrap">
-                <label>Поиск по столбцу - </label>
-                <input type="text" placeholder="Поиск"/>
-
+          <div className="mui-toolbar-search-wrap">
+            <div className="mui-toolbar-search-column">
+              <label className="mui-toolbar-search-label">
+                Поиск по столбцу -{" "}
+              </label>
+              <select className="mui-toolbar-search-select">
+                <RenderSelectOption nameTable={nameTable} />
+              </select>
             </div>
+            <input
+              className="mui-toolbar-search-input"
+              type="text"
+              placeholder="Поиск"
+            />
+          </div>
         }
       </div>
       <div className="mui-paper">
         <div className="mui-paper-data_grid">
-          <table className="datagrid-table">{renderSwitch()}</table>
+          <table className="datagrid-table">
+            <RenderTables nameTable={nameTable} />
+          </table>
         </div>
 
         <CreateCategory
