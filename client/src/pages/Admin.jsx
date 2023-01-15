@@ -8,12 +8,18 @@ import TablesPage from "./TablesPage";
 import { getAll } from "../http/UserAPI";
 
 const Admin = observer(() => {
-  const { user } = useContext(Context);
+  const { user, dataTables } = useContext(Context);
   const [value, setValue] = useState("");
 
   useEffect(() => {
     getAll().then((data) => user.setAllUser(data));
   }, [user]);
+
+  const setValueChange = (nametables) => {
+    setValue(nametables);
+
+    dataTables.setSelectedInputs([]);
+  };
 
   return (
     <section className="admins">
@@ -22,47 +28,47 @@ const Admin = observer(() => {
           <div className="admins-add">
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("CLIENT_DATABASE")}>
+              onClick={() => setValueChange("CLIENT_DATABASE")}>
               Клиенты
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("SALE_DATABASE")}>
+              onClick={() => setValueChange("SALE_DATABASE")}>
               Продажи
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("SALES_ARCHIVE_DATABASE")}>
+              onClick={() => setValueChange("SALES_ARCHIVE_DATABASE")}>
               Архив продаж
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("PRODUCT_DATABASE")}>
+              onClick={() => setValueChange("PRODUCT_DATABASE")}>
               Продукты
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("CATEGORY_DATABASE")}>
+              onClick={() => setValueChange("CATEGORY_DATABASE")}>
               Категории
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("POINT_ISSUE_DATABASE")}>
+              onClick={() => setValueChange("POINTISSUE_DATABASE")}>
               Пункты доставки
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("SUPPLIERS_DATABASE")}>
+              onClick={() => setValueChange("SUPPLIERS_DATABASE")}>
               Поставщики
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("INVOICE_DATABASE")}>
+              onClick={() => setValueChange("INVOICE_DATABASE")}>
               Накладная
             </button>
             <button
               className="admins-add__button  btn-text"
-              onClick={() => setValue("PRODUCT_WAYBILL_DATABASE")}>
+              onClick={() => setValueChange("PRODUCTWAYBILL_DATABASE")}>
               Товарная накладная
             </button>
           </div>

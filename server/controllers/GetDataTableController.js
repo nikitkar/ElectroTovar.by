@@ -16,6 +16,29 @@ class GetDataTableController {
     });
   }
 
+  async deletedRow(req, res, next) {
+    const { id, nameTable, nameColumn } = req.query;
+
+    if (
+      !id ||
+      id == "" ||
+      !nameTable ||
+      nameTable == "" ||
+      !nameColumn ||
+      nameColumn == ""
+    )
+      return next(
+        ApiError.badRequest("Incorrect id or nameTable or nameColumn")
+      );
+
+    const query = `DELETE FROM ${nameTable} WHERE ${nameTable}.${nameColumn}=${id}`;
+
+    await db.query(query, (err, data) => {
+      if (err) return res.json(err);
+      else return res.json(data);
+    });
+  }
+
   async getClient_discount(req, res, next) {
     try {
       const { nameColumn, sortParam } = req.query;

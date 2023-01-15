@@ -1,7 +1,19 @@
 import { $authHost } from "./Http";
 
 export const getDataTable = async (name) => {
-  const { data } = await $authHost.post("/api/getDataTable", name);
+  const { data } = await $authHost.get("/api/getDataTable", name);
+
+  return data;
+};
+
+export const deletedRow = async (id, nameTable, nameColumn) => {
+  const { data } = await $authHost.get("/api/getDataTable/delete", {
+    param: {
+      id,
+      nameTable,
+      nameColumn,
+    },
+  });
 
   return data;
 };

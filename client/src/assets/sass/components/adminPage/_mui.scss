@@ -1,8 +1,7 @@
 .mui {
   &-main {
-    @include displayFlex(flex-start, flex-start, column);
-
-    width: 100%;
+    @include displayFlex(flex-start, flex-start);
+    position: relative;
 
     .datagrid {
       &-table {
@@ -163,6 +162,29 @@
 
           @include font(14px, 400);
         }
+      }
+    }
+  }
+
+  &-toolbar {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 30px;
+
+    padding-right: 20px;
+
+    position: sticky;
+    top: 10px;
+
+    width: 300px;
+
+    &-delete {
+      &-wrap {
+        @include displayFlex(flex-start, flex-start, column);
+        gap: 5px;
+      }
+
+      &-text {
+        @include font(14px, 400);
       }
     }
   }

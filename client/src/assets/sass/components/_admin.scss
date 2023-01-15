@@ -3,21 +3,18 @@
   background-color: $color-white;
 
   &-wrapper {
-    @include displayFlex(flex-start, flex-start);
+    @include displayFlex(flex-start, flex-start, column);
     gap: 40px;
 
     width: 100%;
   }
 
   &-add {
-    @include displayFlex(flex-start, center, column);
+    @include displayFlex(flex-start, space-between);
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 15px;
 
-    padding-right: 20px;
-
-    border-radius: 5px;
-    border-right: 1px solid black;
+    width: 100%;
 
     &__button {
       white-space: nowrap;

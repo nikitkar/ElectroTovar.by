@@ -23,7 +23,7 @@ export const SALE_NAMECOLUMNE = [
   "priceSale",
   "numberSale",
 ];
-export const SALES_ARCHIVE_NAMECOLUMNE = [
+export const SALESARCHIVE_NAMECOLUMNE = [
   "idSalesArchive",
   "idSale",
   "statusSalesArchive",
@@ -36,7 +36,7 @@ export const PRODUCT_NAMECOLUMNE = [
   "countProduct",
   "imgProduct",
 ];
-export const PRODUCT_INFO_NAMECOLUMNE = [
+export const PRODUCTINFO_NAMECOLUMNE = [
   "idProductInfo",
   "idProduct",
   "titleProduct",
@@ -47,7 +47,7 @@ export const CATEGORY_NAMECOLUMNE = [
   "nameCategory",
   "imgCategory",
 ];
-export const POINT_ISSUE_NAMECOLUMNE = [
+export const POINTISSUE_NAMECOLUMNE = [
   "idPointIssue",
   "addressPointIssue",
   "workingHousePointIssue",
@@ -61,7 +61,7 @@ export const INVOICE_NAMECOLUMNE = [
   "countInvoice",
   "priceInvoice",
 ];
-export const PRODUCT_WAYBILL_NAMECOLUMNE = [
+export const PRODUCTWAYBILL_NAMECOLUMNE = [
   "idProductWaybill",
   "idInvoice",
   "idProduct",

@@ -6,6 +6,7 @@ const getDataTableRouter = new Router();
 const getDataTableController = new GetDataTableController();
 
 getDataTableRouter.get("/", CheckMiddleware("ADMIN"), getDataTableController.get);
+getDataTableRouter.get("/delete", CheckMiddleware("ADMIN"), getDataTableController.deletedRow);
 getDataTableRouter.get("/users", CheckMiddleware("ADMIN"), getDataTableController.getClient_discount);
 
 export { getDataTableRouter };
