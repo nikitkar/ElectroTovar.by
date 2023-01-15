@@ -1,3 +1,8 @@
+import { useContext, useState } from "react";
+import { observer } from "mobx-react-lite";
+
+import { Context } from "../../../index";
+
 import {
   CLIENT_NAMECOLUMNE,
   CREDENTIALS_NAMECOLUMNE,
@@ -12,78 +17,126 @@ import {
   PRODUCTWAYBILL_NAMECOLUMNE,
 } from "../../../utils/consts_nameColumnE";
 
-const RenderSelectOption = ({ nameTable }) => {
-  switch (nameTable) {
-    case "CLIENT_NAMECOLUMNE":
-      return CLIENT_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "CREDENTIALS_NAMECOLUMNE":
-      return CREDENTIALS_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "SALE_NAMECOLUMNE":
-      return SALE_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "SALESARCHIVE_NAMECOLUMNE":
-      return SALESARCHIVE_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "PRODUCT_NAMECOLUMNE":
-      return PRODUCT_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "PRODUCTINFO_NAMECOLUMNE":
-      return PRODUCTINFO_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "CATEGORY_NAMECOLUMNE":
-      return CATEGORY_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "POINTISSUE_NAMECOLUMNE":
-      return POINTISSUE_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "SUPPLIERS_NAMECOLUMNE":
-      return SUPPLIERS_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "INVOICE_NAMECOLUMNE":
-      return INVOICE_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
-    case "PRODUCTWAYBILL_NAMECOLUMNE":
-      return PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) => (
-        <option key={index} className="mui-toolbar-search-option" value={item}>
-          {item}
-        </option>
-      ));
+const RenderSelectOption = observer(({ nameTable }) => {
+  const { dataTables } = useContext(Context);
 
-    default:
-      return null;
-  }
-};
+  const renderOption = () => {
+    switch (nameTable) {
+      case "CLIENT_NAMECOLUMNE":
+        return CLIENT_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "CREDENTIALS_NAMECOLUMNE":
+        return CREDENTIALS_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "SALE_NAMECOLUMNE":
+        return SALE_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "SALESARCHIVE_NAMECOLUMNE":
+        return SALESARCHIVE_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "PRODUCT_NAMECOLUMNE":
+        return PRODUCT_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "PRODUCTINFO_NAMECOLUMNE":
+        return PRODUCTINFO_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "CATEGORY_NAMECOLUMNE":
+        return CATEGORY_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "POINTISSUE_NAMECOLUMNE":
+        return POINTISSUE_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "SUPPLIERS_NAMECOLUMNE":
+        return SUPPLIERS_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "INVOICE_NAMECOLUMNE":
+        return INVOICE_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+      case "PRODUCTWAYBILL_NAMECOLUMNE":
+        return PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) => (
+          <option
+            key={index}
+            className="mui-toolbar-search-option"
+            value={item}>
+            {item}
+          </option>
+        ));
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <select
+      className="mui-toolbar-search-select"
+      name="mui-toolbar-search-select"
+      value={dataTables.selectOption}
+      onChange={(e) => dataTables.setSelectOption(e.target.value)}>
+      <option></option>
+      {renderOption()}
+    </select>
+  );
+});
 
 export default RenderSelectOption;

@@ -14,7 +14,16 @@ export default class User {
     this._dataInvoice = [];
     this._dataProductWaybill = [];
 
+    //delete
     this._selectedInputs = [];
+
+    //search
+    this._selectOption = "";
+    this._valueSearchData = "";
+
+    //sort
+    this._sortColumnIndex = 0;
+    this._sortMethod = "ASC";
 
     makeAutoObservable(this);
   }
@@ -74,6 +83,22 @@ export default class User {
     );
   }
 
+  setSelectOption(selectOption) {
+    this._selectOption = selectOption;
+  }
+
+  setValueSearchData(value) {
+    this._valueSearchData = value;
+  }
+
+  setSortColumnIndex(index) {
+    this._sortColumnIndex = index;
+  }
+
+  setSortMethod(method) {
+    this._sortMethod = method;
+  }
+
   get dataUser() {
     return this._dataUser;
   }
@@ -120,5 +145,21 @@ export default class User {
 
   get selectedInputs() {
     return this._selectedInputs;
+  }
+
+  get selectOption() {
+    return this._selectOption;
+  }
+
+  get valueSearchData() {
+    return this._valueSearchData;
+  }
+
+  get sortColumnIndex() {
+    return this._sortColumnIndex;
+  }
+
+  get sortMethod() {
+    return this._sortMethod;
   }
 }

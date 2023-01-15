@@ -39,6 +39,29 @@ class GetDataTableController {
     });
   }
 
+  async searchData(req, res, next) {
+    const { nameTable, nameColumn, content } = req.query;
+
+    if (
+      !content ||
+      content == "" ||
+      !nameTable ||
+      nameTable == "" ||
+      !nameColumn ||
+      nameColumn == ""
+    )
+      return next(
+        ApiError.badRequest("Incorrect content or nameTable or nameColumn")
+      );
+
+    const query = `SELECT * FROM ${nameTable} WHERE ${nameColumn} LIKE '%${content}%'`;
+
+    await db.query(query, (err, data) => {
+      if (err) return res.json(err);
+      else return res.json(data);
+    });
+  }
+
   async getClient_discount(req, res, next) {
     try {
       const { nameColumn, sortParam } = req.query;
@@ -50,6 +73,47 @@ class GetDataTableController {
         nameColumn === "percentPromotionsUsers"
           ? `SELECT client.idClient, client.nameClient, client.emailClient, client.telephoneClient, client.addressClient, promotionsUsers.percentPromotionsUsers FROM client, promotionsUsers WHERE client.idClient = promotionsUsers.idClient ORDER BY promotionsUsers.${nameColumn} ${sortParam}`
           : `SELECT client.idClient, client.nameClient, client.emailClient, client.telephoneClient, client.addressClient, promotionsUsers.percentPromotionsUsers FROM client, promotionsUsers WHERE client.idClient = promotionsUsers.idClient ORDER BY client.${nameColumn} ${sortParam}`;
+
+      await db.query(query, (err, data) => {
+        if (err) return res.json(err);
+        else return res.json(data);
+      });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async getClient_discount_search(req, res, next) {
+    try {
+      const { columnNameSort, columnNameSearch, sortParam, content } =
+        req.query;
+
+      if (
+        !columnNameSort ||
+        columnNameSort == "" ||
+        !columnNameSearch ||
+        columnNameSearch == "" ||
+        !sortParam ||
+        sortParam == "" ||
+        !content ||
+        content == ""
+      )
+        return next(ApiError.badRequest("Incorrect or sortParam"));
+
+      const query =
+        columnNameSort === "percentPromotionsUsers"
+          ? `SELECT client.idClient, client.nameClient, client.emailClient, client.telephoneClient, client.addressClient, promotionsUsers.percentPromotionsUsers
+          FROM client, promotionsUsers
+          WHERE client.idClient = promotionsUsers.idClient 
+          AND promotionsUsers.${columnNameSearch} 
+          LIKE '%${content}%' 
+          ORDER BY ${columnNameSort} ${sortParam}`
+          : `SELECT client.idClient, client.nameClient, client.emailClient, client.telephoneClient, client.addressClient, promotionsUsers.percentPromotionsUsers
+          FROM client, promotionsUsers
+          WHERE client.idClient = promotionsUsers.idClient 
+          AND client.${columnNameSearch} 
+          LIKE '%${content}%' 
+          ORDER BY ${columnNameSort} ${sortParam}`;
 
       await db.query(query, (err, data) => {
         if (err) return res.json(err);

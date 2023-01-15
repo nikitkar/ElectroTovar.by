@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 import { Context } from "../../index";
@@ -6,42 +6,51 @@ import { Context } from "../../index";
 import { CLIENT_NAMECOLUMNR } from "../../utils/consts_nameColumnR";
 import { CLIENT_NAMECOLUMNE } from "../../utils/consts_nameColumnE";
 
-import { getDataUser_discount } from "../../http/GetDataTableAPI";
+import {
+  getClient_discount_search,
+  getDataUser_discount,
+} from "../../http/GetDataTableAPI";
 
 import BodyTable from "./bodyUserTable/TBodyUserTable";
 
 const UserTable = observer(() => {
   const { dataTables } = useContext(Context);
 
-  const [sortColumnIndex, setSortColumnIndex] = useState(0);
-  const [sortMethod, setSortMethod] = useState("ASC");
-
-  useEffect(() => {
-    CLIENT_NAMECOLUMNE.map((item, index) =>
-      sortColumnIndex === index
-        ? getDataUser_discount(item, sortMethod).then((data) => {
-            if (data.err || data.sqlMessage) alert(data.err || data.sqlMessage);
-            else dataTables.setDataUser(data);
-          })
-        : null
-    );
-  }, [dataTables, sortColumnIndex, sortMethod]);
-
   const refresh = () => {
-    CLIENT_NAMECOLUMNE.map((item, index) =>
-      sortColumnIndex === index
-        ? getDataUser_discount(item, sortMethod).then((data) => {
-            if (data.err || data.sqlMessage) alert(data.err || data.sqlMessage);
-            else dataTables.setDataUser(data);
-          })
-        : null
-    );
+    //если строка поиска пуста, то выводим всю таблицу, иначе выводим с поиском и сортировкой
+    if (dataTables.valueSearchData === "" || dataTables.selectOption === "") {
+      CLIENT_NAMECOLUMNE.map((item, index) =>
+        dataTables.sortColumnIndex === index
+          ? getDataUser_discount(item, dataTables.sortMethod).then((data) => {
+              if (data.err || data.sqlMessage)
+                return alert(data.err || data.sqlMessage);
+              else dataTables.setDataUser(data);
+            })
+          : null
+      );
+    } else {
+      CLIENT_NAMECOLUMNE.map((item, index) =>
+        dataTables.sortColumnIndex === index
+          ? getClient_discount_search(
+              dataTables.selectOption,
+              dataTables.valueSearchData,
+              item,
+              dataTables.sortMethod
+            ).then((data) => {
+              if (data.err || data.sqlMessage)
+                return alert(data.err || data.sqlMessage);
+              else dataTables.setDataUser(data);
+            })
+          : null
+      );
+    }
   };
 
   const nameSortColumn = (index) => {
-    setSortColumnIndex(index);
-    setSortMethod((prev) => (prev === "ASC" ? "DESC" : "ASC"));
-    if (sortColumnIndex !== index) setSortMethod("DESC");
+    dataTables.setSortMethod(dataTables.sortMethod === "ASC" ? "DESC" : "ASC");
+    if (dataTables.sortColumnIndex !== index) dataTables.setSortMethod("ASC");
+
+    dataTables.setSortColumnIndex(index);
 
     refresh();
   };
@@ -61,6 +70,10 @@ const UserTable = observer(() => {
       dataTables.deleteSelectedInputs(index + 1)
     );
   };
+
+  useEffect(() => {
+    refresh();
+  }, []);
 
   return (
     <>
@@ -116,8 +129,8 @@ const UserTable = observer(() => {
                 {nameColumn}
                 <span
                   className={
-                    sortColumnIndex === index
-                      ? sortMethod === "ASC"
+                    dataTables.sortColumnIndex === index
+                      ? dataTables.sortMethod === "ASC"
                         ? "datagrid-thead-cell_icon  transform"
                         : "datagrid-thead-cell_icon"
                       : "datagrid-thead-cell_icon  transform"

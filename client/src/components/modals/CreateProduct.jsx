@@ -39,7 +39,17 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
     formData.append("idCategory", categories.selectedCategory.idCategory);
     formData.append("info", JSON.stringify(info));
 
-    createProduct(formData).then((data) => onClick());
+    createProduct(formData).then((data) => {
+      if (data.err) return alert(data.err);
+      
+      setName("");
+      setPrice(0);
+      setCount(0);
+      setImg(null);
+      setInfo([]);
+
+      onClick();
+    });
   };
 
   const selectedFile = (e) => setImg(e.target.files[0]);
@@ -136,12 +146,12 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
             </div>
           ))}
 
-          <input
+          <button
             className="createProduct-button btn-text"
-            type="submit"
-            value="Добавить товар"
-            onClick={addProduct}
-          />
+            type="button"
+            onClick={() => addProduct()}>
+            Добавить товар
+          </button>
         </div>
       </div>
     </div>

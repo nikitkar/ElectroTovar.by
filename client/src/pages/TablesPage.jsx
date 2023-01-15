@@ -10,7 +10,8 @@ import RenderSelectOption from "../components/table/function/RenderSelectOption"
 import CreateCategory from "../components/modals/CreateCategory";
 import CreateProduct from "../components/modals/CreateProduct";
 
-import { deletedRow } from "../http/GetDataTableAPI";
+import { searchData } from "../http/GetDataTableAPI";
+import { getDataUser_discount } from "../http/GetDataTableAPI";
 
 const TablesPage = observer(({ nameTable }) => {
   const { dataTables } = useContext(Context);
@@ -19,10 +20,10 @@ const TablesPage = observer(({ nameTable }) => {
 
   const [productVisible, setProductVisible] = useState(false);
   const [categoryVisible, setCategoryVisible] = useState(false);
-  const [state, setState] = useState({ open: false });
+  const [state, setState] = useState(false);
 
-  const open = () => setState({ open: true });
-  const close = () => setState({ open: false });
+  const open = () => setState(true);
+  const close = () => setState(false);
 
   const addRow = () => {
     switch (nameTabel_split) {
@@ -46,6 +47,30 @@ const TablesPage = observer(({ nameTable }) => {
     close();
   };
 
+  const searchData_change = (values) => {
+    dataTables.setValueSearchData(values);
+
+    setTimeout(() => {
+      searchData(
+        nameTabel_split,
+        dataTables.selectOption,
+        dataTables.valueSearchData
+      ).then((data) => {
+        if (data.err) {
+          getDataUser_discount("idClient", "ASC").then((data) =>
+            dataTables.setDataUser(data)
+          );
+          dataTables.setSelectedInputs([]);
+
+          return;
+        }
+
+        dataTables.setDataUser(data);
+        dataTables.setSelectedInputs([]);
+      });
+    }, 600);
+  };
+
   return (
     <div className="mui-main">
       <div className="mui-toolbar">
@@ -60,7 +85,7 @@ const TablesPage = observer(({ nameTable }) => {
             </button>
             <Confirm
               content="Уверены, что хотите удалить?"
-              open={state.open}
+              open={state}
               onCancel={close}
               onConfirm={deleteRow}
             />
@@ -81,16 +106,16 @@ const TablesPage = observer(({ nameTable }) => {
           <div className="mui-toolbar-search-wrap">
             <div className="mui-toolbar-search-column">
               <label className="mui-toolbar-search-label">
-                Поиск по столбцу -{" "}
+                Поиск по столбцу -
               </label>
-              <select className="mui-toolbar-search-select">
-                <RenderSelectOption nameTable={nameTable} />
-              </select>
+              <RenderSelectOption nameTable={nameTable} />
             </div>
             <input
               className="mui-toolbar-search-input"
               type="text"
               placeholder="Поиск"
+              value={dataTables.valueSearchData}
+              onChange={(e) => searchData_change(e.target.value)}
             />
           </div>
         }

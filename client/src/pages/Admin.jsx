@@ -19,6 +19,8 @@ const Admin = observer(() => {
     setValue(nametables);
 
     dataTables.setSelectedInputs([]);
+    dataTables.setSelectOption("");
+    dataTables.setValueSearchData("");
   };
 
   return (
@@ -54,7 +56,7 @@ const Admin = observer(() => {
             <button
               className="admins-add__button  btn-text"
               onClick={() => setValueChange("PRODUCTINFO_NAMECOLUMNE")}>
-                Характеристика продуктов
+              Характеристика продуктов
             </button>
             <button
               className="admins-add__button  btn-text"
