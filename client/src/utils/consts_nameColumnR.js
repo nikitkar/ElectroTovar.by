@@ -22,7 +22,7 @@ export const SALE_NAMECOLUMNR = [
   "Итоговая цена",
   "Связь",
 ];
-export const SALES_ARCHIVE_NAMECOLUMNR = ["id", "id документа", "Статус"];
+export const SALESARCHIVE_NAMECOLUMNR = ["id", "id документа", "Статус"];
 export const PRODUCT_NAMECOLUMNR = [
   "id",
   "Категория",

@@ -3,9 +3,9 @@ import { observer } from "mobx-react-lite";
 
 import { Context } from "../../index";
 
-import RenderUniversalTables from "./function/RenderUniversalTables";
+import RenderUniversalHeadTables from "./function/RenderUniversalHeadTables";
 
-const UniversalTables = observer((nameTable) => {
+const UniversalTables = observer(({ nameTable }) => {
   const { dataTables } = useContext(Context);
 
   return (
@@ -54,7 +54,7 @@ const UniversalTables = observer((nameTable) => {
               <span className="datagrid-thead-input-root"></span>
             </span>
           </th>
-          <RenderUniversalTables nameTable={nameTable} />
+          <RenderUniversalHeadTables nameTable={nameTable} />
         </tr>
       </thead>
       {/* <BodyTable /> */}
