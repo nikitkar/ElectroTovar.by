@@ -5,7 +5,6 @@ import {
   getDataTable,
   getDataUser_discount,
   searchData,
-  sortData,
   sortData_search,
 } from "../http/GetDataTableAPI";
 
@@ -185,7 +184,7 @@ export default class User {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          CLIENT_NAMECOLUMNE.map((item, index) => {
+          CLIENT_NAMECOLUMNE.map((item, index) =>
             getClient_discount_search(
               this._selectOption,
               this._valueSearchData,
@@ -203,8 +202,8 @@ export default class User {
 
               this.setDataUser(data);
               this.setSelectedInputs([]);
-            });
-          });
+            })
+          );
         }, 600);
 
         return null;

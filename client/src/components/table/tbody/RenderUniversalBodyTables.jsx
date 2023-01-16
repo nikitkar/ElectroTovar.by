@@ -3,7 +3,6 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 
 import { Context } from "../../../index";
-import { CREDENTIALS_NAMECOLUMNE } from "../../../utils/consts_nameColumnE";
 
 const RenderUniversalBodyTables = observer(({ nameTable }) => {
   const { dataTables } = useContext(Context);
