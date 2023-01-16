@@ -9,11 +9,20 @@ import {
 } from "../http/GetDataTableAPI";
 
 import {
+  CATEGORY_NAMECOLUMNE,
   CLIENT_NAMECOLUMNE,
   CREDENTIALS_NAMECOLUMNE,
+  INVOICE_NAMECOLUMNE,
+  POINTISSUE_NAMECOLUMNE,
+  PRODUCTINFO_NAMECOLUMNE,
+  PRODUCTWAYBILL_NAMECOLUMNE,
+  PRODUCT_NAMECOLUMNE,
+  SALESARCHIVE_NAMECOLUMNE,
+  SALE_NAMECOLUMNE,
+  SUPPLIERS_NAMECOLUMNE,
 } from "../utils/consts_nameColumnE";
 
-export default class User {
+export default class DataTableStore {
   constructor() {
     this._dataUser = [];
     this._dataCredentials = [];
@@ -104,6 +113,249 @@ export default class User {
 
         return null;
       }
+      case "SALE_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("sale").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataSale(data);
+          });
+        } else {
+          SALE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "sale",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataSale(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "SALESARCHIVE_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("salearchive").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataSalesArchive(data);
+          });
+        } else {
+          SALESARCHIVE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "salearchive",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataSalesArchive(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "PRODUCT_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("product").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataProduct(data);
+          });
+        } else {
+          PRODUCT_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "product",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataProduct(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "PRODUCTINFO_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("product_info").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataProductInfo(data);
+          });
+        } else {
+          PRODUCTINFO_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "product_info",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataProductInfo(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "CATEGORY_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("category").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataCategory(data);
+          });
+        } else {
+          CATEGORY_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "category",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataCategory(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "POINTISSUE_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("pointIssue").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataPointIssue(data);
+          });
+        } else {
+          POINTISSUE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "pointIssue",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataPointIssue(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "SUPPLIERS_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("suppliers").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataSuppliers(data);
+          });
+        } else {
+          SUPPLIERS_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "suppliers",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataSuppliers(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "INVOICE_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("invoice").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataInvoice(data);
+          });
+        } else {
+          INVOICE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "invoice",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataInvoice(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
+      case "PRODUCTWAYBILL_NAMECOLUMNE": {
+        if (this._valueSearchData === "" || this._selectOption === "") {
+          getDataTable("productWaybill").then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else this.setDataProductWaybill(data);
+          });
+        } else {
+          PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData_search(
+                  "productWaybill",
+                  this._selectOption,
+                  this._valueSearchData,
+                  item,
+                  this._sortMethod
+                ).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataProductWaybill(data);
+                })
+              : null
+          );
+        }
+
+        return null;
+      }
 
       default:
         return null;
@@ -152,7 +404,6 @@ export default class User {
 
         return null;
       }
-
       case "CREDENTIALS_NAMECOLUMNE": {
         if (this._selectedInputs.length === this._dataCredentials.length)
           return this._dataCredentials.map((nameColumn) =>
@@ -166,6 +417,159 @@ export default class User {
 
         this._dataCredentials.map((nameColumn) =>
           this.deleteSelectedInputs(nameColumn.idCredentials)
+        );
+
+        return null;
+      }
+      case "SALE_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataSale.length)
+          return this._dataCredentials.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idSale)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataSale.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idSale)
+          );
+
+        this._dataSale.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idSale)
+        );
+
+        return null;
+      }
+      case "SALESARCHIVE_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataSalesArchive.length)
+          return this._dataSalesArchive.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idSalesArchive)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataSalesArchive.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idSalesArchive)
+          );
+
+        this._dataSalesArchive.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idSalesArchive)
+        );
+
+        return null;
+      }
+      case "PRODUCT_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataProduct.length)
+          return this._dataProduct.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idProduct)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataProduct.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idProduct)
+          );
+
+        this._dataProduct.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idProduct)
+        );
+
+        return null;
+      }
+      case "PRODUCTINFO_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataProductInfo.length)
+          return this._dataProductInfo.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idProductInfo)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataProductInfo.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idProductInfo)
+          );
+
+        this._dataProductInfo.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idProductInfo)
+        );
+
+        return null;
+      }
+      case "CATEGORY_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataCategory.length)
+          return this._dataCategory.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idCategory)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataCategory.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idCategory)
+          );
+
+        this._dataCategory.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idCategory)
+        );
+
+        return null;
+      }
+      case "POINTISSUE_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataPointIssue.length)
+          return this._dataPointIssue.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idPointIssue)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataPointIssue.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idPointIssue)
+          );
+
+        this._dataPointIssue.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idPointIssue)
+        );
+
+        return null;
+      }
+      case "SUPPLIERS_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataSuppliers.length)
+          return this._dataSuppliers.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idSuppliers)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataSuppliers.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idSuppliers)
+          );
+
+        this._dataSuppliers.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idSuppliers)
+        );
+
+        return null;
+      }
+      case "INVOICE_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataInvoice.length)
+          return this._dataInvoice.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idInvoice)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataInvoice.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idInvoice)
+          );
+
+        this._dataInvoice.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idInvoice)
+        );
+
+        return null;
+      }
+      case "PRODUCTWAYBILL_NAMECOLUMNE": {
+        if (this._selectedInputs.length === this._dataProductWaybill.length)
+          return this._dataProductWaybill.map((nameColumn) =>
+            this.deleteSelectedInputs(nameColumn.idProductWaybill)
+          );
+
+        if (this._selectedInputs.length === 0)
+          return this._dataProductWaybill.map((nameColumn) =>
+            this.setSelectedInputs(nameColumn.idProductWaybill)
+          );
+
+        this._dataProductWaybill.map((nameColumn) =>
+          this.deleteSelectedInputs(nameColumn.idProductWaybill)
         );
 
         return null;
