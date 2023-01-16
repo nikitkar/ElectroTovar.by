@@ -4,8 +4,9 @@ import { useState, useContext } from "react";
 import { Context } from "../../index";
 
 const DropDownMenu = observer(({ title, store }) => {
-  const [showMenu, setShowMenu] = useState(false);
   const { categories } = useContext(Context);
+
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className="drop-down-wrap">
@@ -21,7 +22,9 @@ const DropDownMenu = observer(({ title, store }) => {
                 <li
                   className="drop-down-item"
                   key={index}
-                  onClick={() => categories.setSelectedCategories(category)}>
+                  onClick={() =>
+                    categories.setSelectedCategories(category)
+                  }>
                   <p className="drop-down-item__title">
                     {category.nameCategory}
                   </p>
@@ -30,11 +33,7 @@ const DropDownMenu = observer(({ title, store }) => {
             : null}
         </ul>
       </div>
-      <p className="drop-donw-selected">
-        {/* {store === "categories"
-          ? `${categories.selectedCategory}`
-          : `${brands.selectedBrand}`} */}
-      </p>
+      <p className="drop-donw-selected">{categories.selectedCategory.nameCategory}</p>
     </div>
   );
 });

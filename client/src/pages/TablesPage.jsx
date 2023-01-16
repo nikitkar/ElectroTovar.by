@@ -36,12 +36,10 @@ const TablesPage = observer(({ nameTable }) => {
   };
 
   const deleteRow = () => {
-    dataTables.selectedInputs.map(
-      (selectedInput) => console.log(selectedInput, nameTabel_split, "idClient")
-      //   deletedRow(selectedInput, nameTable.split("_")[0].toLowerCase(), "idClient").then((data) => {});
-    );
-
+    dataTables.deleteRow();
     close();
+    dataTables.refresh();
+    dataTables.setSelectedInputs([]);
   };
 
   return (

@@ -80,6 +80,13 @@
     width: 100%;
   }
 
+  &-box {
+    @include displayFlex(flex-start, flex-start, column);
+    gap: 4px;
+
+    width: 100%;
+  }
+
   &-input {
     width: 100%;
 

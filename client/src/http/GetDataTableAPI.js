@@ -11,8 +11,9 @@ export const getDataTable = async (name) => {
 };
 
 export const deletedRow = async (id, nameTable, nameColumn) => {
+  console.log(id, nameTable, nameColumn);
   const { data } = await $authHost.get("/api/getDataTable/delete", {
-    param: {
+    params: {
       id,
       nameTable,
       nameColumn,

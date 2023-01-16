@@ -1,10 +1,12 @@
 import { makeAutoObservable } from "mobx";
 
 import {
+  deletedRow,
   getClient_discount_search,
   getDataTable,
   getDataUser_discount,
   searchData,
+  sortData,
   sortData_search,
 } from "../http/GetDataTableAPI";
 
@@ -88,11 +90,15 @@ export default class DataTableStore {
       }
       case "CREDENTIALS_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("credentials").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataCredentials(data);
-          });
+          CREDENTIALS_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("credentials", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataCredentials(data);
+                })
+              : null
+          );
         } else {
           CREDENTIALS_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -115,11 +121,15 @@ export default class DataTableStore {
       }
       case "SALE_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("sale").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataSale(data);
-          });
+          SALE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("sale", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataSale(data);
+                })
+              : null
+          );
         } else {
           SALE_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -142,16 +152,20 @@ export default class DataTableStore {
       }
       case "SALESARCHIVE_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("salearchive").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataSalesArchive(data);
-          });
+          SALESARCHIVE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("salesarchive", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataSalesArchive(data);
+                })
+              : null
+          );
         } else {
           SALESARCHIVE_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
               ? sortData_search(
-                  "salearchive",
+                  "salesarchive",
                   this._selectOption,
                   this._valueSearchData,
                   item,
@@ -169,11 +183,15 @@ export default class DataTableStore {
       }
       case "PRODUCT_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("product").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataProduct(data);
-          });
+          PRODUCT_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("product", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataProduct(data);
+                })
+              : null
+          );
         } else {
           PRODUCT_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -196,11 +214,17 @@ export default class DataTableStore {
       }
       case "PRODUCTINFO_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("product_info").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataProductInfo(data);
-          });
+          PRODUCTINFO_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("product_info", item, this._sortMethod).then(
+                  (data) => {
+                    if (data.err || data.sqlMessage)
+                      return alert(data.err || data.sqlMessage);
+                    else this.setDataProductInfo(data);
+                  }
+                )
+              : null
+          );
         } else {
           PRODUCTINFO_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -223,11 +247,17 @@ export default class DataTableStore {
       }
       case "CATEGORY_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("category").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataCategory(data);
-          });
+          CATEGORY_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? getDataTable("category", item, this._sortMethod).then(
+                  (data) => {
+                    if (data.err || data.sqlMessage)
+                      return alert(data.err || data.sqlMessage);
+                    else this.setDataCategory(data);
+                  }
+                )
+              : null
+          );
         } else {
           CATEGORY_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -250,11 +280,15 @@ export default class DataTableStore {
       }
       case "POINTISSUE_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("pointIssue").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataPointIssue(data);
-          });
+          POINTISSUE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("pointIssue", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataPointIssue(data);
+                })
+              : null
+          );
         } else {
           POINTISSUE_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -277,11 +311,15 @@ export default class DataTableStore {
       }
       case "SUPPLIERS_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("suppliers").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataSuppliers(data);
-          });
+          SUPPLIERS_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("suppliers", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataSuppliers(data);
+                })
+              : null
+          );
         } else {
           SUPPLIERS_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -304,11 +342,15 @@ export default class DataTableStore {
       }
       case "INVOICE_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("invoice").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataInvoice(data);
-          });
+          INVOICE_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? sortData("invoice", item, this._sortMethod).then((data) => {
+                  if (data.err || data.sqlMessage)
+                    return alert(data.err || data.sqlMessage);
+                  else this.setDataInvoice(data);
+                })
+              : null
+          );
         } else {
           INVOICE_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -331,11 +373,17 @@ export default class DataTableStore {
       }
       case "PRODUCTWAYBILL_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          getDataTable("productWaybill").then((data) => {
-            if (data.err || data.sqlMessage)
-              return alert(data.err || data.sqlMessage);
-            else this.setDataProductWaybill(data);
-          });
+          PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) =>
+            this._sortColumnIndex === index
+              ? getDataTable("productWaybill", item, this._sortMethod).then(
+                  (data) => {
+                    if (data.err || data.sqlMessage)
+                      return alert(data.err || data.sqlMessage);
+                    else this.setDataProductWaybill(data);
+                  }
+                )
+              : null
+          );
         } else {
           PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) =>
             this._sortColumnIndex === index
@@ -857,6 +905,103 @@ export default class DataTableStore {
 
         return null;
       }
+
+      default:
+        return;
+    }
+  }
+
+  deleteRow() {
+    switch (this._activeTable) {
+      case "CLIENT_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "client", "idClient").then((data) =>
+            alert(data)
+          )
+        );
+
+        break;
+      case "CREDENTIALS_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "credentials", "idCredentials").then(
+            (data) => alert(data)
+          )
+        );
+
+        break;
+      case "SALE_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "sale", "idSale").then((data) =>
+            alert(data)
+          )
+        );
+
+        break;
+      case "SALESARCHIVE_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "salesArchive", "idSalesArchive").then(
+            (data) => alert(data)
+          )
+        );
+
+        break;
+      case "PRODUCT_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "product", "idProduct").then((data) => {
+            console.log(data);
+            alert(data.err ? data.err : "Успешно");
+          })
+        );
+
+        break;
+      case "PRODUCTINFO_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "product_info", "idProductInfo").then(
+            (data) => alert(data)
+          )
+        );
+
+        break;
+      case "CATEGORY_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "category", "idCategory").then((data) =>
+            alert(data)
+          )
+        );
+
+        break;
+      case "POINTISSUE_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "pointIssue", "idPointIssue").then((data) =>
+            alert(data)
+          )
+        );
+
+        break;
+      case "SUPPLIERS_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "suppliers", "idSuppliers").then((data) =>
+            alert(data)
+          )
+        );
+
+        break;
+      case "INVOICE_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "invoice", "idInvoice").then((data) =>
+            alert(data)
+          )
+        );
+
+        break;
+      case "PRODUCTWAYBILL_NAMECOLUMNE":
+        this._selectedInputs.map((selectedInput) =>
+          deletedRow(selectedInput, "productWaybill", "idProductWaybill").then(
+            (data) => alert(data)
+          )
+        );
+
+        break;
 
       default:
         return;

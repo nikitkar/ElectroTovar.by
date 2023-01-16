@@ -6,7 +6,7 @@ export default class ProductStore {
     this._categories = [];
     this._allProducts = [];
 
-    this._selectedCategory = {};
+    this._selectedCategory = "";
     this._selectedBrand = {};
 
     makeAutoObservable(this);
@@ -16,7 +16,7 @@ export default class ProductStore {
     this._products = product;
   }
 
-  setAllProducts(product){
+  setAllProducts(product) {
     this._allProducts = product;
   }
 
@@ -32,7 +32,7 @@ export default class ProductStore {
     return this._products;
   }
 
-  get allProducts(){
+  get allProducts() {
     return this._allProducts;
   }
 

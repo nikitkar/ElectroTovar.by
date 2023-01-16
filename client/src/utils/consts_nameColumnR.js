@@ -16,7 +16,7 @@ export const CREDENTIALS_NAMECOLUMNR = [
 export const SALE_NAMECOLUMNR = [
   "id",
   "id клиента",
-  "Название продукта",
+  "id продукта",
   "Дата оформления",
   "Количество Товара",
   "Итоговая цена",

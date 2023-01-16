@@ -6,7 +6,7 @@ import DropDownMenu from "../dropDownMenu/DropDownMenu";
 import { Context } from "../../index";
 
 const CreateProduct = observer(({ stateModal, onClick }) => {
-  const { categories } = useContext(Context);
+  const { dataTables, categories } = useContext(Context);
   const [classModal, setClassModal] = useState("createProduct");
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -41,7 +41,7 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
 
     createProduct(formData).then((data) => {
       if (data.err) return alert(data.err);
-      
+
       setName("");
       setPrice(0);
       setCount(0);
@@ -49,6 +49,7 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
       setInfo([]);
 
       onClick();
+      dataTables.refresh();
     });
   };
 
@@ -79,36 +80,50 @@ const CreateProduct = observer(({ stateModal, onClick }) => {
         <div className="createProduct-form">
           <DropDownMenu title="Выберите категорию товара" store="categories" />
 
-          <input
-            className="createProduct-input"
-            type="text"
-            placeholder="Название товара"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <div className="createProduct-box">
+            <label className="createProduct-box__text">Название товара</label>
+            <input
+              className="createProduct-input"
+              type="text"
+              placeholder="Название товара"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
 
-          <input
-            className="createProduct-input"
-            type="text"
-            placeholder="Цена товара"
-            value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
-          />
+          <div className="createProduct-box">
+            <label className="createProduct-box__text">Цена товара</label>
+            <input
+              className="createProduct-input"
+              type="text"
+              placeholder="Цена товара"
+              value={price}
+              onChange={(e) => setPrice(Number(e.target.value))}
+            />
+          </div>
 
-          <input
-            className="createProduct-input"
-            type="text"
-            placeholder="Количество товара"
-            value={count}
-            onChange={(e) => setCount(Number(e.target.value))}
-          />
+          <div className="createProduct-box">
+            <label className="createProduct-box__text">Количество товара</label>
+            <input
+              className="createProduct-input"
+              type="text"
+              placeholder="Количество товара"
+              value={count}
+              onChange={(e) => setCount(Number(e.target.value))}
+            />
+          </div>
 
-          <input
-            className="createProduct-input"
-            type="file"
-            placeholder="Изображение товара"
-            onChange={selectedFile}
-          />
+          <div className="createProduct-box">
+            <label className="createProduct-box__text">
+              Изображение товара
+            </label>
+            <input
+              className="createProduct-input"
+              type="file"
+              placeholder="Изображение товара"
+              onChange={selectedFile}
+            />
+          </div>
 
           <button
             className="createProduct-btn-info  btn-text"

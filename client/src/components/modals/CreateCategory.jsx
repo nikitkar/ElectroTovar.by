@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { Context } from "../../index";
+
 import { createCategory } from "../../http/CategoryAPI";
 
 const CreateCategory = ({ stateModal, onClick }) => {
+  const { dataTables } = useContext(Context);
+
   const [classModal, setClassModal] = useState("createCategory");
   const [value, setValue] = useState("");
 
-  useEffect(() =>
-    setClassModal(stateModal ? "createCategory is_active" : "createCategory")
-  , [stateModal]);
+  useEffect(
+    () =>
+      setClassModal(stateModal ? "createCategory is_active" : "createCategory"),
+    [stateModal]
+  );
 
   const addCategory = () => {
     createCategory({ name: value }).then((data) => {
       data.err ? alert(data.err) : setValue("");
+
       onClick();
+      dataTables.refresh();
     });
   };
 

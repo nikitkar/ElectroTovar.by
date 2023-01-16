@@ -16,50 +16,61 @@ const UniversalTables = observer(({ nameTable }) => {
   useEffect(() => {
     switch (nameTable) {
       case "CREDENTIALS_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataCredentials(data);
         });
+        break;
       case "SALE_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataSale(data);
         });
+        break;
       case "SALESARCHIVE_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataSalesArchive(data);
         });
+        break;
       case "PRODUCT_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataProduct(data);
         });
+        break;
       case "PRODUCTINFO_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable("product_info").then((data) => {
+            console.log(data);
           dataTables.setDataProductInfo(data);
         });
+        break;
       case "CATEGORY_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataCategory(data);
         });
+        break;
       case "POINTISSUE_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataPointIssue(data);
         });
+        break;
       case "SUPPLIERS_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataSuppliers(data);
         });
+        break;
       case "INVOICE_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataInvoice(data);
         });
+        break;
       case "PRODUCTWAYBILL_NAMECOLUMNE":
-        return getDataTable(name).then((data) => {
+        getDataTable(name).then((data) => {
           dataTables.setDataProductWaybill(data);
         });
+        break;
 
       default:
-        return null;
+        break;
     }
-  });
+  }, [dataTables, name, nameTable]);
 
   return (
     <>
