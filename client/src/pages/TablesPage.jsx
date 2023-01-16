@@ -39,10 +39,10 @@ const TablesPage = observer(({ nameTable }) => {
   };
 
   const deleteRow = () => {
-    dataTables.selectedInputs.map((selectedInput) => {
-      console.log(selectedInput, nameTabel_split, "idClient");
+    dataTables.selectedInputs.map(
+      (selectedInput) => console.log(selectedInput, nameTabel_split, "idClient")
       //   deletedRow(selectedInput, nameTable.split("_")[0].toLowerCase(), "idClient").then((data) => {});
-    });
+    );
 
     close();
   };
@@ -74,56 +74,60 @@ const TablesPage = observer(({ nameTable }) => {
   return (
     <div className="mui-main">
       <div className="mui-toolbar">
-        {dataTables.selectedInputs.length === 0 ? null : (
-          <div className="mui-toolbar-delete-wrap">
-            <p className="mui-toolbar-delete-text">
-              Элементов выделено -{" "}
-              <span>{dataTables.selectedInputs.length}</span>
-            </p>
-            <button className="btn-text" onClick={open}>
-              Удалить
-            </button>
-            <Confirm
-              content="Уверены, что хотите удалить?"
-              open={state}
-              onCancel={close}
-              onConfirm={deleteRow}
-            />
-          </div>
+        {nameTable === "" ? null : (
+          <>
+            {dataTables.selectedInputs.length === 0 ? null : (
+              <div className="mui-toolbar-delete-wrap">
+                <p className="mui-toolbar-delete-text">
+                  Элементов выделено -{" "}
+                  <span>{dataTables.selectedInputs.length}</span>
+                </p>
+                <button className="btn-text" onClick={open}>
+                  Удалить
+                </button>
+                <Confirm
+                  content="Уверены, что хотите удалить?"
+                  open={state}
+                  onCancel={close}
+                  onConfirm={deleteRow}
+                />
+              </div>
+            )}
+
+            {nameTabel_split === "product" ? (
+              <button className="btn-text" onClick={() => addRow()}>
+                Добавить товар
+              </button>
+            ) : nameTabel_split === "category" ? (
+              <button className="btn-text" onClick={() => addRow()}>
+                Добавить категорию
+              </button>
+            ) : null}
+
+            {
+              <div className="mui-toolbar-search-wrap">
+                <div className="mui-toolbar-search-column">
+                  <label className="mui-toolbar-search-label">
+                    Поиск по столбцу -
+                  </label>
+                  <RenderSelectOption nameTable={nameTable} />
+                </div>
+                <input
+                  className="mui-toolbar-search-input"
+                  type="text"
+                  placeholder="Поиск"
+                  value={dataTables.valueSearchData}
+                  onChange={(e) => searchData_change(e.target.value)}
+                />
+              </div>
+            }
+          </>
         )}
-
-        {nameTabel_split === "product" ? (
-          <button className="btn-text" onClick={() => addRow()}>
-            Добавить товар
-          </button>
-        ) : nameTabel_split === "category" ? (
-          <button className="btn-text" onClick={() => addRow()}>
-            Добавить категорию
-          </button>
-        ) : null}
-
-        {
-          <div className="mui-toolbar-search-wrap">
-            <div className="mui-toolbar-search-column">
-              <label className="mui-toolbar-search-label">
-                Поиск по столбцу -
-              </label>
-              <RenderSelectOption nameTable={nameTable} />
-            </div>
-            <input
-              className="mui-toolbar-search-input"
-              type="text"
-              placeholder="Поиск"
-              value={dataTables.valueSearchData}
-              onChange={(e) => searchData_change(e.target.value)}
-            />
-          </div>
-        }
       </div>
       <div className="mui-paper">
         <div className="mui-paper-data_grid">
           <table className="datagrid-table">
-            <RenderTables nameTable={nameTable} />
+            {nameTable === "" ? null : <RenderTables nameTable={nameTable} />}
           </table>
         </div>
 

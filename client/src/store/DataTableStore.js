@@ -1,5 +1,12 @@
 import { makeAutoObservable } from "mobx";
 
+import {
+  getClient_discount_search,
+  getDataUser_discount,
+} from "../http/GetDataTableAPI";
+
+import { CLIENT_NAMECOLUMNE } from "../utils/consts_nameColumnE";
+
 export default class User {
   constructor() {
     this._dataUser = [];
@@ -26,6 +33,60 @@ export default class User {
     this._sortMethod = "ASC";
 
     makeAutoObservable(this);
+  }
+
+  refresh() {
+    if (this._valueSearchData === "" || this._selectOption === "") {
+      CLIENT_NAMECOLUMNE.map((item, index) =>
+        this._sortColumnIndex === index
+          ? getDataUser_discount(item, this._sortMethod).then((data) => {
+              if (data.err || data.sqlMessage)
+                return alert(data.err || data.sqlMessage);
+              else this.setDataUser(data);
+            })
+          : null
+      );
+    } else {
+      CLIENT_NAMECOLUMNE.map((item, index) =>
+        this._sortColumnIndex === index
+          ? getClient_discount_search(
+              this._selectOption,
+              this._valueSearchData,
+              item,
+              this._sortMethod
+            ).then((data) => {
+              if (data.err || data.sqlMessage)
+                return alert(data.err || data.sqlMessage);
+              else this.setDataUser(data);
+            })
+          : null
+      );
+    }
+  }
+
+  nameSortColumn(index) {
+    this.setSortMethod(this._sortMethod === "ASC" ? "DESC" : "ASC");
+    if (this._sortColumnIndex !== index) this.setSortMethod("ASC");
+
+    this.setSortColumnIndex(index);
+
+    this.refresh();
+  }
+
+  checkedInputAll() {
+    if (this._selectedInputs.length === this._dataUser.length)
+      return this._dataUser.map((nameColumn, index) =>
+        this.deleteSelectedInputs(nameColumn.idClient)
+      );
+
+    if (this._selectedInputs.length === 0)
+      return this._dataUser.map((nameColumn, index) =>
+        this.setSelectedInputs(nameColumn.idClient)
+      );
+
+    this._dataUser.map((nameColumn, index) =>
+      this.deleteSelectedInputs(nameColumn.idClient)
+    );
   }
 
   setDataUser(data) {

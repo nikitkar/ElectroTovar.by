@@ -1,4 +1,6 @@
 import { observer } from "mobx-react-lite";
+
+import UniversalTables from "../UniversalTables";
 import UserTable from "../UserTable";
 
 const RenderTables = observer(({ nameTable }) => {
@@ -7,7 +9,7 @@ const RenderTables = observer(({ nameTable }) => {
       return <UserTable />;
 
     default:
-      return null;
+      return <UniversalTables nameTable={nameTable} />;
   }
 });
 

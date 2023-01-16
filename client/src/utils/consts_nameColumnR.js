@@ -6,7 +6,6 @@ export const CLIENT_NAMECOLUMNR = [
   "Адрес",
   "Скидка",
 ];
-
 export const CREDENTIALS_NAMECOLUMNR = [
   "id",
   "ФИО",
@@ -21,7 +20,7 @@ export const SALE_NAMECOLUMNR = [
   "Дата оформления",
   "Количество Товара",
   "Итоговая цена",
-  "Связь"
+  "Связь",
 ];
 export const SALES_ARCHIVE_NAMECOLUMNR = ["id", "id документа", "Статус"];
 export const PRODUCT_NAMECOLUMNR = [
@@ -32,9 +31,9 @@ export const PRODUCT_NAMECOLUMNR = [
   "Количество на складе",
   "Изображение товара",
 ];
-export const PRODUCT_INFO_NAMECOLUMNR = ["id", "id товара", "Ключ", "Значение"];
+export const PRODUCTINFO_NAMECOLUMNR = ["id", "id товара", "Ключ", "Значение"];
 export const CATEGORY_NAMECOLUMNR = ["id", "Название", "Изображение категории"];
-export const POINT_ISSUE_NAMECOLUMNR = ["id", "Адрес", "Время работы"];
+export const POINTISSUE_NAMECOLUMNR = ["id", "Адрес", "Время работы"];
 export const SUPPLIERS_NAMECOLUMNR = ["id", "Название"];
 export const INVOICE_NAMECOLUMNR = [
   "id",
@@ -44,7 +43,7 @@ export const INVOICE_NAMECOLUMNR = [
   "Количество товара",
   "Сумма",
 ];
-export const PRODUCT_WAYBILL_NAMECOLUMNR = [
+export const PRODUCTWAYBILL_NAMECOLUMNR = [
   "id",
   "id накладной",
   "Название товара",
