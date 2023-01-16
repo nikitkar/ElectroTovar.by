@@ -60,6 +60,12 @@ const Admin = observer(() => {
       case "PRODUCTWAYBILL_NAMECOLUMNE":
         setNameTable("товарная-накладная");
         break;
+      case "Histogram":
+        setNameTable("столбчатая диаграмма");
+        break;
+      case "PieChart":
+        setNameTable("круговая диаграмма");
+        break;
 
       default:
         setNameTable("");
@@ -127,9 +133,24 @@ const Admin = observer(() => {
               onClick={() => setValueChange("PRODUCTWAYBILL_NAMECOLUMNE")}>
               Товарная накладная
             </button>
+
+            <button
+              className="admins-add__button  btn-text"
+              onClick={() => setValueChange("Histogram")}>
+              Столбчатая диаграмма
+            </button>
+            <button
+              className="admins-add__button  btn-text"
+              onClick={() => setValueChange("PieChart")}>
+              Круговая диаграмма
+            </button>
           </div>
 
-          <p>Вы находитесь на таблице - {nameTable}</p>
+          <p>
+            {value === "Histogram" || value === "PieChart"
+              ? "Вы находитесь на диаграмме - " + nameTable
+              : "Вы находитесь на таблице - " + nameTable}
+          </p>
 
           <div className="admins-body">
             <TablesPage nameTable={value} />

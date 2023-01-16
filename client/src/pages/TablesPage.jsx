@@ -9,6 +9,8 @@ import RenderSelectOption from "../components/table/function/RenderSelectOption"
 
 import CreateCategory from "../components/modals/CreateCategory";
 import CreateProduct from "../components/modals/CreateProduct";
+import PieChart from "../components/diagram/PieChart";
+import Histogram from "../components/diagram/Histogram";
 
 const TablesPage = observer(({ nameTable }) => {
   const { dataTables } = useContext(Context);
@@ -45,7 +47,9 @@ const TablesPage = observer(({ nameTable }) => {
   return (
     <div className="mui-main">
       <div className="mui-toolbar">
-        {nameTable === "" ? null : (
+        {nameTable === "" ||
+        nameTable === "PieChart" ||
+        nameTable === "Histogram" ? null : (
           <>
             {dataTables.selectedInputs.length === 0 ? null : (
               <div className="mui-toolbar-delete-wrap">
@@ -96,11 +100,17 @@ const TablesPage = observer(({ nameTable }) => {
         )}
       </div>
       <div className="mui-paper">
-        <div className="mui-paper-data_grid">
-          <table className="datagrid-table">
-            {nameTable === "" ? null : <RenderTables nameTable={nameTable} />}
-          </table>
-        </div>
+        {nameTable === "PieChart" ? (
+          <PieChart />
+        ) : nameTable === "Histogram" ? (
+          <Histogram />
+        ) : (
+          <div className="mui-paper-data_grid">
+            <table className="datagrid-table">
+              {nameTable === "" ? null : <RenderTables nameTable={nameTable} />}
+            </table>
+          </div>
+        )}
 
         <CreateCategory
           stateModal={categoryVisible}
