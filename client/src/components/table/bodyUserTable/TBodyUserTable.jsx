@@ -6,20 +6,6 @@ import { Context } from "../../../index";
 const BodyTable = observer(() => {
   const { dataTables } = useContext(Context);
 
-  const checkedInputOne = (id) => {
-    if (dataTables.selectedInputs.length === 0)
-      return dataTables.setSelectedInputs(id);
-
-    const repeatedValue = dataTables.selectedInputs.filter(
-      (elem) => elem === id
-    );
-
-    if (repeatedValue.length > 0) {
-      return dataTables.deleteSelectedInputs(repeatedValue[0]);
-    }
-    dataTables.setSelectedInputs(id);
-  };
-
   return (
     <tbody className="datagrid-tbody">
       {dataTables.dataUser.map((client, index) => (
@@ -27,7 +13,7 @@ const BodyTable = observer(() => {
           <td className="datagrid-tbody-cell">
             <span
               className="datagrid-thead-input-wrap"
-              onClick={() => checkedInputOne(client.idClient)}>
+              onClick={() => dataTables.checkedInputOne(client.idClient)}>
               <input className="datagrid-thead-input" type="checkbox" />
               {dataTables.selectedInputs.includes(client.idClient) ? (
                 <svg

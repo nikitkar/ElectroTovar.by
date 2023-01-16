@@ -1,7 +1,11 @@
 import { $authHost } from "./Http";
 
 export const getDataTable = async (name) => {
-  const { data } = await $authHost.get("/api/getDataTable", name);
+  const { data } = await $authHost.get("/api/getDataTable/", {
+    params: {
+      name,
+    },
+  });
 
   return data;
 };
@@ -24,6 +28,38 @@ export const searchData = async (nameTable, nameColumn, content) => {
       nameTable: nameTable,
       nameColumn: nameColumn,
       content: content,
+    },
+  });
+
+  return data;
+};
+
+export const sortData = async (nameTable, nameColumn, methodSort) => {
+  const { data } = await $authHost.get("/api/getDataTable/sort", {
+    params: {
+      nameTable: nameTable,
+      nameColumn: nameColumn,
+      methodSort: methodSort,
+    },
+  });
+
+  return data;
+};
+
+export const sortData_search = async (
+  nameTable,
+  nameColumnSeacrh,
+  content,
+  nameColumnSort,
+  methodSort
+) => {
+  const { data } = await $authHost.get("/api/getDataTable/sort_search", {
+    params: {
+      nameTable,
+      nameColumnSeacrh,
+      content,
+      nameColumnSort,
+      methodSort,
     },
   });
 

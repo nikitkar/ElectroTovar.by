@@ -8,14 +8,14 @@ export const CLIENT_NAMECOLUMNR = [
 ];
 export const CREDENTIALS_NAMECOLUMNR = [
   "id",
-  "ФИО",
+  "id клиента",
   "Логин",
   "Пароль",
   "Роль на сайте",
 ];
 export const SALE_NAMECOLUMNR = [
   "id",
-  "ФИО",
+  "id клиента",
   "Название продукта",
   "Дата оформления",
   "Количество Товара",
@@ -25,7 +25,7 @@ export const SALE_NAMECOLUMNR = [
 export const SALESARCHIVE_NAMECOLUMNR = ["id", "id документа", "Статус"];
 export const PRODUCT_NAMECOLUMNR = [
   "id",
-  "Категория",
+  "id категории",
   "Название",
   "Цена",
   "Количество на складе",

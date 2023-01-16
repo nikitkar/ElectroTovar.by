@@ -10,6 +10,7 @@ import { getAll } from "../http/UserAPI";
 const Admin = observer(() => {
   const { user, dataTables } = useContext(Context);
   const [value, setValue] = useState("");
+  const [nameTable, setNameTable] = useState("");
 
   useEffect(() => {
     getAll().then((data) => user.setAllUser(data));
@@ -17,10 +18,53 @@ const Admin = observer(() => {
 
   const setValueChange = (nametables) => {
     setValue(nametables);
+    setNameTable(nametables);
 
     dataTables.setSelectedInputs([]);
     dataTables.setSelectOption("");
     dataTables.setValueSearchData("");
+    dataTables.setSortMethod("ASC");
+    dataTables.setSortColumnIndex(0);
+
+    switch (nametables) {
+      case "CLIENT_NAMECOLUMNE":
+        setNameTable("клиенты");
+        break;
+      case "CREDENTIALS_NAMECOLUMNE":
+        setNameTable("личные данные клиентов");
+        break;
+      case "SALE_NAMECOLUMNE":
+        setNameTable("продажи");
+        break;
+      case "SALESARCHIVE_NAMECOLUMNE":
+        setNameTable("архив продаж");
+        break;
+      case "PRODUCT_NAMECOLUMNE":
+        setNameTable("продукты");
+        break;
+      case "PRODUCTINFO_NAMECOLUMNE":
+        setNameTable("характеристика продуктов");
+        break;
+      case "CATEGORY_NAMECOLUMNE":
+        setNameTable("категории");
+        break;
+      case "POINTISSUE_NAMECOLUMNE":
+        setNameTable("пункты доставки");
+        break;
+      case "SUPPLIERS_NAMECOLUMNE":
+        setNameTable("поставщики");
+        break;
+      case "INVOICE_NAMECOLUMNE":
+        setNameTable("накладная");
+        break;
+      case "PRODUCTWAYBILL_NAMECOLUMNE":
+        setNameTable("товарная-накладная");
+        break;
+
+      default:
+        setNameTable("");
+        break;
+    }
   };
 
   return (
@@ -36,7 +80,7 @@ const Admin = observer(() => {
             <button
               className="admins-add__button  btn-text"
               onClick={() => setValueChange("CREDENTIALS_NAMECOLUMNE")}>
-              Личнве данные клиентов
+              Личные данные клиентов
             </button>
             <button
               className="admins-add__button  btn-text"
@@ -84,6 +128,8 @@ const Admin = observer(() => {
               Товарная накладная
             </button>
           </div>
+
+          <p>Вы находитесь на таблице - {nameTable}</p>
 
           <div className="admins-body">
             <TablesPage nameTable={value} />

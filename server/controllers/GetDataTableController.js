@@ -4,7 +4,7 @@ import { db } from "../MySQL.js";
 
 class GetDataTableController {
   async get(req, res, next) {
-    const { name } = req.body;
+    const { name } = req.query;
 
     if (!name || name == "") return next(ApiError.badRequest("Incorrect name"));
 
@@ -42,14 +42,7 @@ class GetDataTableController {
   async searchData(req, res, next) {
     const { nameTable, nameColumn, content } = req.query;
 
-    if (
-      !content ||
-      content == "" ||
-      !nameTable ||
-      nameTable == "" ||
-      !nameColumn ||
-      nameColumn == ""
-    )
+    if (!nameTable || nameTable == "" || !nameColumn || nameColumn == "")
       return next(
         ApiError.badRequest("Incorrect content or nameTable or nameColumn")
       );
@@ -60,6 +53,73 @@ class GetDataTableController {
       if (err) return res.json(err);
       else return res.json(data);
     });
+  }
+
+  async sortData(req, res, next) {
+    try {
+      const { nameTable, nameColumn, methodSort } = req.query;
+
+      if (
+        !nameColumn ||
+        nameColumn == "" ||
+        !nameTable ||
+        nameTable == "" ||
+        !methodSort ||
+        methodSort == ""
+      )
+        return next(
+          ApiError.badRequest("Incorrect nameTable or nameTable or methodSort")
+        );
+
+      const query = `SELECT * FROM ${nameTable} ORDER BY ${nameColumn} ${methodSort}`;
+
+      await db.query(query, (err, data) => {
+        if (err) return res.json(err);
+        else return res.json(data);
+      });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
+  }
+
+  async sortData_search(req, res, next) {
+    try {
+      const {
+        nameTable,
+        nameColumnSeacrh,
+        content,
+        nameColumnSort,
+        methodSort,
+      } = req.query;
+
+      if (
+        !nameTable ||
+        nameTable == "" ||
+        !nameColumnSeacrh ||
+        nameColumnSeacrh == "" ||
+        !content ||
+        content == "" ||
+        !nameColumnSort ||
+        nameColumnSort == "" ||
+        !methodSort ||
+        methodSort == ""
+      )
+        return next(
+          ApiError.badRequest(
+            "Incorrect nameTable or nameColumnSeacrh or content or nameColumnSort or methodSort"
+          )
+        );
+
+      const query = `
+      SELECT * FROM ${nameTable} WHERE ${nameColumnSeacrh} LIKE '%${content}%' ORDER BY ${nameColumnSort} ${methodSort}`;
+
+      await db.query(query, (err, data) => {
+        if (err) return res.json(err);
+        else return res.json(data);
+      });
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
   }
 
   async getClient_discount(req, res, next) {

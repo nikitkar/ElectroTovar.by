@@ -14,6 +14,7 @@ const UserTable = observer(() => {
   useEffect(() => {
     autorun(() => dataTables.refresh());
   }, [dataTables]);
+  
   return (
     <>
       <thead className="datagrid-thead">

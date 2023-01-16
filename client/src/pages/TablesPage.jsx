@@ -10,9 +10,6 @@ import RenderSelectOption from "../components/table/function/RenderSelectOption"
 import CreateCategory from "../components/modals/CreateCategory";
 import CreateProduct from "../components/modals/CreateProduct";
 
-import { searchData } from "../http/GetDataTableAPI";
-import { getDataUser_discount } from "../http/GetDataTableAPI";
-
 const TablesPage = observer(({ nameTable }) => {
   const { dataTables } = useContext(Context);
 
@@ -45,30 +42,6 @@ const TablesPage = observer(({ nameTable }) => {
     );
 
     close();
-  };
-
-  const searchData_change = (values) => {
-    dataTables.setValueSearchData(values);
-
-    setTimeout(() => {
-      searchData(
-        nameTabel_split,
-        dataTables.selectOption,
-        dataTables.valueSearchData
-      ).then((data) => {
-        if (data.err) {
-          getDataUser_discount("idClient", "ASC").then((data) =>
-            dataTables.setDataUser(data)
-          );
-          dataTables.setSelectedInputs([]);
-
-          return;
-        }
-
-        dataTables.setDataUser(data);
-        dataTables.setSelectedInputs([]);
-      });
-    }, 600);
   };
 
   return (
@@ -117,7 +90,7 @@ const TablesPage = observer(({ nameTable }) => {
                   type="text"
                   placeholder="Поиск"
                   value={dataTables.valueSearchData}
-                  onChange={(e) => searchData_change(e.target.value)}
+                  onChange={(e) => dataTables.searchData_change(e.target.value)}
                 />
               </div>
             }
