@@ -621,16 +621,236 @@ export default class DataTableStore {
             this._valueSearchData
           ).then((data) => {
             if (data.err) {
-              searchData("credentials", "idCredentials", "").then((data) => {
-                this.setDataCredentials(data);
-                console.log(data);
-              });
+              searchData("credentials", "idCredentials", "").then((data) =>
+                this.setDataCredentials(data)
+              );
               this.setSelectedInputs([]);
 
               return;
             }
 
             this.setDataCredentials(data);
+            this.setSelectedInputs([]);
+          });
+        }, 600);
+
+        return null;
+      }
+      case "SALE_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData("sale", this._selectOption, this._valueSearchData).then(
+            (data) => {
+              if (data.err) {
+                searchData("sale", "idSale", "").then((data) => {
+                  this.setDataSale(data);
+                });
+                this.setSelectedInputs([]);
+
+                return;
+              }
+
+              this.setDataSale(data);
+              this.setSelectedInputs([]);
+            }
+          );
+        }, 600);
+
+        return null;
+      }
+      case "SALESARCHIVE_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData(
+            "salesArchive",
+            this._selectOption,
+            this._valueSearchData
+          ).then((data) => {
+            if (data.err) {
+              searchData("salesArchive", "idSalesArchive", "").then((data) =>
+                this.setDataSalesArchive(data)
+              );
+              this.setSelectedInputs([]);
+
+              return;
+            }
+
+            this.setDataSalesArchive(data);
+            this.setSelectedInputs([]);
+          });
+        }, 600);
+
+        return null;
+      }
+      case "PRODUCT_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData("product", this._selectOption, this._valueSearchData).then(
+            (data) => {
+              if (data.err) {
+                searchData("product", "idProduct", "").then((data) =>
+                  this.setDataProduct(data)
+                );
+                this.setSelectedInputs([]);
+
+                return;
+              }
+
+              this.setDataProduct(data);
+              this.setSelectedInputs([]);
+            }
+          );
+        }, 600);
+
+        return null;
+      }
+      case "PRODUCTINFO_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData(
+            "product_info",
+            this._selectOption,
+            this._valueSearchData
+          ).then((data) => {
+            if (data.err) {
+              searchData("product_info", "idProductInfo", "").then((data) =>
+                this.setDataProductInfo(data)
+              );
+              this.setSelectedInputs([]);
+
+              return;
+            }
+
+            this.setDataProductInfo(data);
+            this.setSelectedInputs([]);
+          });
+        }, 600);
+
+        return null;
+      }
+      case "CATEGORY_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData(
+            "category",
+            this._selectOption,
+            this._valueSearchData
+          ).then((data) => {
+            if (data.err) {
+              searchData("category", "idCategory", "").then((data) =>
+                this.setDataCategory(data)
+              );
+              this.setSelectedInputs([]);
+
+              return;
+            }
+
+            this.setDataCategory(data);
+            this.setSelectedInputs([]);
+          });
+        }, 600);
+
+        return null;
+      }
+      case "POINTISSUE_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData(
+            "pointIssue",
+            this._selectOption,
+            this._valueSearchData
+          ).then((data) => {
+            if (data.err) {
+              searchData("pointIssue", "idPointIssue", "").then((data) =>
+                this.setDataPointIssue(data)
+              );
+              this.setSelectedInputs([]);
+
+              return;
+            }
+
+            this.setDataPointIssue(data);
+            this.setSelectedInputs([]);
+          });
+        }, 600);
+
+        return null;
+      }
+      case "SUPPLIERS_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData(
+            "suppliers",
+            this._selectOption,
+            this._valueSearchData
+          ).then((data) => {
+            if (data.err) {
+              searchData("suppliers", "idSuppliers", "").then((data) =>
+                this.setDataSuppliers(data)
+              );
+              this.setSelectedInputs([]);
+
+              return;
+            }
+
+            this.setDataSuppliers(data);
+            this.setSelectedInputs([]);
+          });
+        }, 600);
+
+        return null;
+      }
+      case "INVOICE_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData("invoice", this._selectOption, this._valueSearchData).then(
+            (data) => {
+              if (data.err) {
+                searchData("invoice", "idInvoice", "").then((data) =>
+                  this.setDataInvoice(data)
+                );
+                this.setSelectedInputs([]);
+
+                return;
+              }
+
+              this.setDataInvoice(data);
+              this.setSelectedInputs([]);
+            }
+          );
+        }, 600);
+
+        return null;
+      }
+      case "PRODUCTWAYBILL_NAMECOLUMNE": {
+        this.setValueSearchData(values);
+
+        setTimeout(() => {
+          searchData(
+            "productWaybill",
+            this._selectOption,
+            this._valueSearchData
+          ).then((data) => {
+            if (data.err) {
+              searchData("productWaybill", "idProductWaybill", "").then(
+                (data) => {
+                  this.setDataProductWaybill(data);
+                }
+              );
+              this.setSelectedInputs([]);
+
+              return;
+            }
+
+            this.setDataProductWaybill(data);
             this.setSelectedInputs([]);
           });
         }, 600);
