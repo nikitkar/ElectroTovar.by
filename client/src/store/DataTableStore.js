@@ -79,7 +79,6 @@ export default class User {
       }
       case "CREDENTIALS_NAMECOLUMNE": {
         if (this._valueSearchData === "" || this._selectOption === "") {
-          console.log("ref");
           getDataTable("credentials").then((data) => {
             if (data.err || data.sqlMessage)
               return alert(data.err || data.sqlMessage);
