@@ -58,51 +58,98 @@ const RenderUniversalBodyTables = observer(({ nameTable }) => {
       case "CREDENTIALS_NAMECOLUMNE": {
         runInAction(() => dataTables.setActiveTable("CREDENTIALS_NAMECOLUMNE"));
 
-        return dataTables.dataCredentials.map((nameColumn, index) => {
-          return (
-            <tr className="datagrid-tbody-row" key={index}>
-              {renderTd(nameColumn, nameTable)}
-            </tr>
-          );
-        });
+        return dataTables.dataCredentials.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
       }
 
-      //   case "SALE_NAMECOLUMNE":
-      //     return dataTables.dataSale.map((nameColumn, index) => (
+      case "SALE_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("SALE_NAMECOLUMNE"));
 
-      //     ));
-      //   case "SALESARCHIVE_NAMECOLUMNE":
-      //     return dataTables.dataSalesArchive.map((nameColumn, index) => (
+        return dataTables.dataSale.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "SALESARCHIVE_NAMECOLUMNE": {
+        runInAction(() =>
+          dataTables.setActiveTable("SALESARCHIVE_NAMECOLUMNE")
+        );
 
-      //     ));
-      //   case "PRODUCT_NAMECOLUMNE":
-      //     return dataTables.dataProduct.map((nameColumn, index) => (
+        return dataTables.dataSalesArchive.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "PRODUCT_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("PRODUCT_NAMECOLUMNE"));
 
-      //     ));
-      //   case "PRODUCTINFO_NAMECOLUMNE":
-      //     return dataTables.dataProductInfo.map((nameColumn, index) => (
+        return dataTables.dataProduct.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "PRODUCTINFO_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("PRODUCTINFO_NAMECOLUMNE"));
 
-      //     ));
-      //   case "CATEGORY_NAMECOLUMNE":
-      //     return dataTables.dataCategory.map((nameColumn, index) => (
+        return dataTables.dataProductInfo.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "CATEGORY_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("CATEGORY_NAMECOLUMNE"));
 
-      //     ));
-      //   case "POINTISSUE_NAMECOLUMNE":
-      //     return dataTables.dataPointIssue.map((nameColumn, index) => (
+        return dataTables.dataCategory.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "POINTISSUE_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("POINTISSUE_NAMECOLUMNE"));
 
-      //     ));
-      //   case "SUPPLIERS_NAMECOLUMNE":
-      //     return dataTables.dataSuppliers.map((nameColumn, index) => (
+        return dataTables.dataPointIssue.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "SUPPLIERS_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("SUPPLIERS_NAMECOLUMNE"));
 
-      //     ));
-      //   case "INVOICE_NAMECOLUMNE":
-      //     return dataTables.dataInvoice.map((nameColumn, index) => (
+        return dataTables.dataSuppliers.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "INVOICE_NAMECOLUMNE": {
+        runInAction(() => dataTables.setActiveTable("INVOICE_NAMECOLUMNE"));
 
-      //     ));
-      //   case "PRODUCTWAYBILL_NAMECOLUMNE":
-      //     return dataTables.dataProductWaybill.map((nameColumn, index) => (
+        return dataTables.dataInvoice.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
+      case "PRODUCTWAYBILL_NAMECOLUMNE": {
+        runInAction(() =>
+          dataTables.setActiveTable("PRODUCTWAYBILL_NAMECOLUMNE")
+        );
 
-      //     ));
+        return dataTables.dataProductWaybill.map((nameColumn, index) => (
+          <tr className="datagrid-tbody-row" key={index}>
+            {renderTd(nameColumn, nameTable)}
+          </tr>
+        ));
+      }
 
       default:
         return null;
