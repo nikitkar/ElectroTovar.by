@@ -6,7 +6,6 @@ export const CLIENT_NAMECOLUMNE = [
   "addressClient",
   "percentPromotionsUsers",
 ];
-
 export const CREDENTIALS_NAMECOLUMNE = [
   "idCredentials",
   "idClient",
