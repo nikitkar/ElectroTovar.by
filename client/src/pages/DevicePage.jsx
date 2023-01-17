@@ -7,11 +7,13 @@ import { Context } from "../index";
 import basketIcon from "../assets/images/icon/basket.svg";
 import { fetchOneProduct } from "../http/ProductAPI";
 
+//обертка, для того, чтобы видеть измениня (подписка)
 const DevicePage = observer(() => {
   const { user, listPromotionsUsers, basket } = useContext(Context);
   const [products, setProducts] = useState(null);
   const { id } = useParams();
 
+  //сработает при первой загрузке страницы
   useEffect(() => {
     fetchOneProduct(id).then((data) => setProducts(data));
   }, [id]);

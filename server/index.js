@@ -1,3 +1,4 @@
+// подлючаемые модули
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Working" });
 });
 
+//запуск сервера
 const start = async () => {
   try {
     app.listen(process.env.PORT_SERVER, () => console.log("Start server"));

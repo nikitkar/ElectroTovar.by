@@ -13,6 +13,7 @@ import DataTableStore from "./store/DataTableStore";
 
 export const Context = createContext(null);
 
+// определение контекста данных и рендер страницы
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Context.Provider
