@@ -149,6 +149,8 @@ const Admin = observer(() => {
           <p>
             {value === "Histogram" || value === "PieChart"
               ? "Вы находитесь на диаграмме - " + nameTable
+              : value === ""
+              ? null
               : "Вы находитесь на таблице - " + nameTable}
           </p>
 

@@ -46,6 +46,13 @@ function Footer() {
               <a className="communications-tel" href="tel:+375291478978">
                 +375 (29) 14-78-978
               </a>
+              <a
+                className="email"
+                target="_blank"
+                href="https://filetools7.pdf24.org/client.php?mode=inline&file=joinPdf_1e5755255b212dba280bca901d4226f0_1979954439396560612.pdf&action=getFile"
+                rel="noreferrer">
+                Руковоство пользователя
+              </a>
             </div>
 
             <a className="email" href="mailto:electrotovarBy@gmail.com">

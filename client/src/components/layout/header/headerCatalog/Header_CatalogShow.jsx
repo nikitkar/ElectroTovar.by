@@ -52,9 +52,9 @@ const HeaderCatalogShow = observer(() => {
               </ul>
             </div>
             <div className="catalog-navigation-drop-wrap">
-              {products.products.map((category, index) => (
+              {/* {products.products.map((category, index) => (
                 <ProductItem key={index} id={category.idCategory} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
