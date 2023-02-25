@@ -78,6 +78,7 @@
             z-index: 0;
             inset: 0px;
             border-radius: inherit;
+            @include font(12px, 400);
           }
         }
 
@@ -160,7 +161,7 @@
 
           width: auto;
 
-          @include font(14px, 400);
+          @include font(12px, 400);
         }
       }
     }

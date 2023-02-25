@@ -55,6 +55,38 @@ export default class DataTableStore {
     makeAutoObservable(this);
   }
 
+  // обновление данных таблиц без параметров - дополнительная функция
+  refreshDontParams(array, nameSort, saveDateResult) {
+    array.map((item, index) =>
+      this._sortColumnIndex === index
+        ? sortData(nameSort, item, this._sortMethod).then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else saveDateResult(data);
+          })
+        : null
+    );
+  }
+
+  // обновление данных таблиц с параметрами - дополнительная функция
+  refreshWithParams(array, nameSort, saveDateResult) {
+    array.map((item, index) =>
+      this._sortColumnIndex === index
+        ? sortData_search(
+            nameSort,
+            this._selectOption,
+            this._valueSearchData,
+            item,
+            this._sortMethod
+          ).then((data) => {
+            if (data.err || data.sqlMessage)
+              return alert(data.err || data.sqlMessage);
+            else saveDateResult(data);
+          })
+        : null
+    );
+  }
+
   // обновляет таблицы
   refresh() {
     switch (this._activeTable) {
@@ -89,318 +121,153 @@ export default class DataTableStore {
         return null;
       }
       case "CREDENTIALS_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          CREDENTIALS_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("credentials", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataCredentials(data);
-                })
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            CREDENTIALS_NAMECOLUMNE,
+            "credentials",
+            this.setDataCredentials
           );
-        } else {
-          CREDENTIALS_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "credentials",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataCredentials(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            CREDENTIALS_NAMECOLUMNE,
+            "credentials",
+            this.setDataCredentials
           );
-        }
 
         return null;
       }
       case "SALE_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          SALE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("sale", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataSale(data);
-                })
-              : null
-          );
-        } else {
-          SALE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "sale",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataSale(data);
-                })
-              : null
-          );
-        }
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(SALE_NAMECOLUMNE, "sale", this.setDataSale);
+        else this.refreshWithParams(SALE_NAMECOLUMNE, "sale", this.setDataSale);
 
         return null;
       }
       case "SALESARCHIVE_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          SALESARCHIVE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("salesarchive", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataSalesArchive(data);
-                })
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            SALESARCHIVE_NAMECOLUMNE,
+            "salesarchive",
+            this.setDataSalesArchive
           );
-        } else {
-          SALESARCHIVE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "salesarchive",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataSalesArchive(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            SALESARCHIVE_NAMECOLUMNE,
+            "salesarchive",
+            this.setDataSalesArchive
           );
-        }
 
         return null;
       }
       case "PRODUCT_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          PRODUCT_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("product", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataProduct(data);
-                })
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            PRODUCT_NAMECOLUMNE,
+            "product",
+            this.setDataProduct
           );
-        } else {
-          PRODUCT_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "product",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataProduct(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            PRODUCT_NAMECOLUMNE,
+            "product",
+            this.setDataProduct
           );
-        }
 
         return null;
       }
       case "PRODUCTINFO_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          PRODUCTINFO_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("product_info", item, this._sortMethod).then(
-                  (data) => {
-                    if (data.err || data.sqlMessage)
-                      return alert(data.err || data.sqlMessage);
-                    else this.setDataProductInfo(data);
-                  }
-                )
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            PRODUCTINFO_NAMECOLUMNE,
+            "product_info",
+            this.setDataProductInfo
           );
-        } else {
-          PRODUCTINFO_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "product_info",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataProductInfo(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            PRODUCTINFO_NAMECOLUMNE,
+            "product_info",
+            this.setDataProductInfo
           );
-        }
 
         return null;
       }
       case "CATEGORY_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          CATEGORY_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? getDataTable("category", item, this._sortMethod).then(
-                  (data) => {
-                    if (data.err || data.sqlMessage)
-                      return alert(data.err || data.sqlMessage);
-                    else this.setDataCategory(data);
-                  }
-                )
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            CATEGORY_NAMECOLUMNE,
+            "category",
+            this.setDataCategory
           );
-        } else {
-          CATEGORY_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "category",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataCategory(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            CATEGORY_NAMECOLUMNE,
+            "category",
+            this.setDataCategory
           );
-        }
 
         return null;
       }
       case "POINTISSUE_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          POINTISSUE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("pointIssue", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataPointIssue(data);
-                })
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            POINTISSUE_NAMECOLUMNE,
+            "pointIssue",
+            this.setDataPointIssue
           );
-        } else {
-          POINTISSUE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "pointIssue",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataPointIssue(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            POINTISSUE_NAMECOLUMNE,
+            "pointIssue",
+            this.setDataPointIssue
           );
-        }
 
         return null;
       }
       case "SUPPLIERS_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          SUPPLIERS_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("suppliers", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataSuppliers(data);
-                })
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            SUPPLIERS_NAMECOLUMNE,
+            "suppliers",
+            this.setDataSuppliers
           );
-        } else {
-          SUPPLIERS_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "suppliers",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataSuppliers(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            SUPPLIERS_NAMECOLUMNE,
+            "suppliers",
+            this.setDataSuppliers
           );
-        }
 
         return null;
       }
       case "INVOICE_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          INVOICE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData("invoice", item, this._sortMethod).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataInvoice(data);
-                })
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            INVOICE_NAMECOLUMNE,
+            "invoice",
+            this.setDataInvoice
           );
-        } else {
-          INVOICE_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "invoice",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataInvoice(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            INVOICE_NAMECOLUMNE,
+            "invoice",
+            this.setDataInvoice
           );
-        }
 
         return null;
       }
       case "PRODUCTWAYBILL_NAMECOLUMNE": {
-        if (this._valueSearchData === "" || this._selectOption === "") {
-          PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? getDataTable("productWaybill", item, this._sortMethod).then(
-                  (data) => {
-                    if (data.err || data.sqlMessage)
-                      return alert(data.err || data.sqlMessage);
-                    else this.setDataProductWaybill(data);
-                  }
-                )
-              : null
+        if (this._valueSearchData === "" || this._selectOption === "")
+          this.refreshDontParams(
+            PRODUCTWAYBILL_NAMECOLUMNE,
+            "productWaybill",
+            this.setDataProductWaybill
           );
-        } else {
-          PRODUCTWAYBILL_NAMECOLUMNE.map((item, index) =>
-            this._sortColumnIndex === index
-              ? sortData_search(
-                  "productWaybill",
-                  this._selectOption,
-                  this._valueSearchData,
-                  item,
-                  this._sortMethod
-                ).then((data) => {
-                  if (data.err || data.sqlMessage)
-                    return alert(data.err || data.sqlMessage);
-                  else this.setDataProductWaybill(data);
-                })
-              : null
+        else
+          this.refreshWithParams(
+            PRODUCTWAYBILL_NAMECOLUMNE,
+            "productWaybill",
+            this.setDataProductWaybill
           );
-        }
 
         return null;
       }
@@ -432,192 +299,83 @@ export default class DataTableStore {
     this.setSelectedInputs(id);
   }
 
+  // выбрать все строки - дополнительная функция
+  auxiliary_checkedInputAll(dataName, dataIdName) {
+    if (this._selectedInputs.length === dataName.length)
+      return dataName.map((nameColumn) =>
+        this.deleteSelectedInputs(nameColumn[dataIdName])
+      );
+
+    if (this._selectedInputs.length === 0)
+      return dataName.map((nameColumn) =>
+        this.setSelectedInputs(nameColumn[dataIdName])
+      );
+
+    dataName.map((nameColumn) =>
+      this.deleteSelectedInputs(nameColumn[dataIdName])
+    );
+  }
+
   // выбрать все строки
   checkedInputAll() {
     switch (this._activeTable) {
       case "CLIENT_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataUser.length)
-          return this._dataUser.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idClient)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataUser.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idClient)
-          );
-
-        this._dataUser.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idClient)
-        );
+        this.auxiliary_checkedInputAll(this._dataUser, "idClient");
 
         return null;
       }
       case "CREDENTIALS_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataCredentials.length)
-          return this._dataCredentials.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idCredentials)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataCredentials.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idCredentials)
-          );
-
-        this._dataCredentials.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idCredentials)
-        );
+        this.auxiliary_checkedInputAll(this._dataCredentials, "idCredentials");
 
         return null;
       }
       case "SALE_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataSale.length)
-          return this._dataCredentials.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idSale)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataSale.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idSale)
-          );
-
-        this._dataSale.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idSale)
-        );
+        this.auxiliary_checkedInputAll(this._dataSale, "idSale");
 
         return null;
       }
       case "SALESARCHIVE_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataSalesArchive.length)
-          return this._dataSalesArchive.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idSalesArchive)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataSalesArchive.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idSalesArchive)
-          );
-
-        this._dataSalesArchive.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idSalesArchive)
+        this.auxiliary_checkedInputAll(
+          this._dataSalesArchive,
+          "idSalesArchive"
         );
 
         return null;
       }
       case "PRODUCT_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataProduct.length)
-          return this._dataProduct.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idProduct)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataProduct.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idProduct)
-          );
-
-        this._dataProduct.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idProduct)
-        );
+        this.auxiliary_checkedInputAll(this._dataProduct, "idProduct");
 
         return null;
       }
       case "PRODUCTINFO_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataProductInfo.length)
-          return this._dataProductInfo.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idProductInfo)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataProductInfo.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idProductInfo)
-          );
-
-        this._dataProductInfo.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idProductInfo)
-        );
+        this.auxiliary_checkedInputAll(this._dataProductInfo, "idProductInfo");
 
         return null;
       }
       case "CATEGORY_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataCategory.length)
-          return this._dataCategory.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idCategory)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataCategory.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idCategory)
-          );
-
-        this._dataCategory.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idCategory)
-        );
+        this.auxiliary_checkedInputAll(this._dataCategory, "idCategory");
 
         return null;
       }
       case "POINTISSUE_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataPointIssue.length)
-          return this._dataPointIssue.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idPointIssue)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataPointIssue.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idPointIssue)
-          );
-
-        this._dataPointIssue.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idPointIssue)
-        );
+        this.auxiliary_checkedInputAll(this._dataPointIssue, "idPointIssue");
 
         return null;
       }
       case "SUPPLIERS_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataSuppliers.length)
-          return this._dataSuppliers.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idSuppliers)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataSuppliers.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idSuppliers)
-          );
-
-        this._dataSuppliers.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idSuppliers)
-        );
+        this.auxiliary_checkedInputAll(this._dataSuppliers, "idSuppliers");
 
         return null;
       }
       case "INVOICE_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataInvoice.length)
-          return this._dataInvoice.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idInvoice)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataInvoice.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idInvoice)
-          );
-
-        this._dataInvoice.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idInvoice)
-        );
+        this.auxiliary_checkedInputAll(this._dataInvoice, "idInvoice");
 
         return null;
       }
       case "PRODUCTWAYBILL_NAMECOLUMNE": {
-        if (this._selectedInputs.length === this._dataProductWaybill.length)
-          return this._dataProductWaybill.map((nameColumn) =>
-            this.deleteSelectedInputs(nameColumn.idProductWaybill)
-          );
-
-        if (this._selectedInputs.length === 0)
-          return this._dataProductWaybill.map((nameColumn) =>
-            this.setSelectedInputs(nameColumn.idProductWaybill)
-          );
-
-        this._dataProductWaybill.map((nameColumn) =>
-          this.deleteSelectedInputs(nameColumn.idProductWaybill)
+        this.auxiliary_checkedInputAll(
+          this._dataProductWaybill,
+          "idProductWaybill"
         );
 
         return null;
@@ -626,6 +384,25 @@ export default class DataTableStore {
       default:
         return null;
     }
+  }
+
+  // поиск по таблице - дополнительная функция
+  auxiliary_searchData_change(nameColumn, idNameColumn, setDataFunction) {
+    searchData(nameColumn, this._selectOption, this._valueSearchData).then(
+      (data) => {
+        if (data.err) {
+          searchData(nameColumn, idNameColumn, "").then((data) =>
+            setDataFunction(data)
+          );
+          this.setSelectedInputs([]);
+
+          return;
+        }
+
+        setDataFunction(data);
+        this.setSelectedInputs([]);
+      }
+    );
   }
 
   // поиск по таблице
@@ -663,23 +440,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "credentials",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("credentials", "idCredentials", "").then((data) =>
-                this.setDataCredentials(data)
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataCredentials(data);
-            this.setSelectedInputs([]);
-          });
+            "idCredentials",
+            this.setDataCredentials
+          );
         }, 600);
 
         return null;
@@ -688,21 +453,7 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData("sale", this._selectOption, this._valueSearchData).then(
-            (data) => {
-              if (data.err) {
-                searchData("sale", "idSale", "").then((data) => {
-                  this.setDataSale(data);
-                });
-                this.setSelectedInputs([]);
-
-                return;
-              }
-
-              this.setDataSale(data);
-              this.setSelectedInputs([]);
-            }
-          );
+          this.auxiliary_searchData_change("sale", "idSale", this.setDataSale);
         }, 600);
 
         return null;
@@ -711,23 +462,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "salesArchive",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("salesArchive", "idSalesArchive", "").then((data) =>
-                this.setDataSalesArchive(data)
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataSalesArchive(data);
-            this.setSelectedInputs([]);
-          });
+            "idSalesArchive",
+            this.setDataSalesArchive
+          );
         }, 600);
 
         return null;
@@ -736,20 +475,10 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData("product", this._selectOption, this._valueSearchData).then(
-            (data) => {
-              if (data.err) {
-                searchData("product", "idProduct", "").then((data) =>
-                  this.setDataProduct(data)
-                );
-                this.setSelectedInputs([]);
-
-                return;
-              }
-
-              this.setDataProduct(data);
-              this.setSelectedInputs([]);
-            }
+          this.auxiliary_searchData_change(
+            "product",
+            "idProduct",
+            this.setDataProduct
           );
         }, 600);
 
@@ -759,23 +488,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "product_info",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("product_info", "idProductInfo", "").then((data) =>
-                this.setDataProductInfo(data)
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataProductInfo(data);
-            this.setSelectedInputs([]);
-          });
+            "idProductInfo",
+            this.setDataProductInfo
+          );
         }, 600);
 
         return null;
@@ -784,23 +501,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "category",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("category", "idCategory", "").then((data) =>
-                this.setDataCategory(data)
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataCategory(data);
-            this.setSelectedInputs([]);
-          });
+            "idCategory",
+            this.setDataCategory
+          );
         }, 600);
 
         return null;
@@ -809,23 +514,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "pointIssue",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("pointIssue", "idPointIssue", "").then((data) =>
-                this.setDataPointIssue(data)
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataPointIssue(data);
-            this.setSelectedInputs([]);
-          });
+            "idPointIssue",
+            this.setDataPointIssue
+          );
         }, 600);
 
         return null;
@@ -834,23 +527,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "suppliers",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("suppliers", "idSuppliers", "").then((data) =>
-                this.setDataSuppliers(data)
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataSuppliers(data);
-            this.setSelectedInputs([]);
-          });
+            "idSuppliers",
+            this.setDataSuppliers
+          );
         }, 600);
 
         return null;
@@ -859,20 +540,10 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData("invoice", this._selectOption, this._valueSearchData).then(
-            (data) => {
-              if (data.err) {
-                searchData("invoice", "idInvoice", "").then((data) =>
-                  this.setDataInvoice(data)
-                );
-                this.setSelectedInputs([]);
-
-                return;
-              }
-
-              this.setDataInvoice(data);
-              this.setSelectedInputs([]);
-            }
+          this.auxiliary_searchData_change(
+            "invoice",
+            "idInvoice",
+            this.setDataInvoice
           );
         }, 600);
 
@@ -882,25 +553,11 @@ export default class DataTableStore {
         this.setValueSearchData(values);
 
         setTimeout(() => {
-          searchData(
+          this.auxiliary_searchData_change(
             "productWaybill",
-            this._selectOption,
-            this._valueSearchData
-          ).then((data) => {
-            if (data.err) {
-              searchData("productWaybill", "idProductWaybill", "").then(
-                (data) => {
-                  this.setDataProductWaybill(data);
-                }
-              );
-              this.setSelectedInputs([]);
-
-              return;
-            }
-
-            this.setDataProductWaybill(data);
-            this.setSelectedInputs([]);
-          });
+            "idProductWaybill",
+            this.setDataProductWaybill
+          );
         }, 600);
 
         return null;
